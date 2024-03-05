@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ItemCard from "./ItemCard";
+import "./productPage.css";
+
 const API_URL = "https://fakestoreapi.com/products/";
+
 
 function ProductPage() {
 
@@ -26,8 +29,7 @@ function ProductPage() {
 
   return (
     <div>
-        <h1>ProductForge</h1>
-
+        <h1 className="logo">ProductForge</h1>
         <div className='search'>
             <input 
                 placeholder="Search for products"

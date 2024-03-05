@@ -1,0 +1,118 @@
+    .auth-container {
+        padding: 2rem;
+        border-radius: 2rem;
+        background-color: #ebd899;
+        width: 50%;
+        margin-left: 3rem;
+    }
+    p{
+    color: #000;
+    margin-bottom: 0;
+    }
+  
+  
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    position: relative;
+    flex-direction: row;
+  }
+  
+  .slider {
+    width: 50%;
+    height: 3em;
+    border-radius: 30px;
+    background-color: #f59e0b;
+    position: absolute;
+    transition: transform 0.3s ease;
+  }
+  
+  .slider.left {
+    transform: translateX(-50%);
+  }
+  
+  .slider.right {
+    transform: translateX(50%);
+  }
+  
+  .login-btn,
+  .signup-btn {
+    width: 50%;
+    height: 3em;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #000;
+    font-size: 1rem;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+  }
+  .signup-btn{
+    border-left: 0;
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+  }
+  .login-btn{
+    border-right: 0;
+    border-top-left-radius: 3rem;
+    border-bottom-left-radius: 3rem;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+  }
+  
+  .form-title {
+    margin: 0.2rem;
+    font-size: 2rem;
+    color: #000000;
+  }
+  
+  .input {
+    width: 100%;
+    background-color: #b3e3ff;
+    border: #000;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.4rem;
+    color: #000;
+    height: 1.5rem;
+    font-size: 1.5rem;
+    padding-left: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .forgot-password {
+    color: #5462a7;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+  
+  .submit-btn {
+    background-color: limegreen;
+    color: #000;
+    border-radius: 3rem;
+    padding: 0.7rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+  }
+  .full-height {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+@media screen and (max-width: 600px){
+    .full-height {
+        justify-content: center;
+    }
+    .auth-container {
+        width: 70%;
+        margin: 0;
+    }
+}
