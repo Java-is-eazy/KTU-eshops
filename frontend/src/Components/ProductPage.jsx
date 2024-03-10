@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ItemCard from "./ItemCard";
 import "./productPage.css";
 
-const API_URL = "https://fakestoreapi.com/products/";
+const API_URL = "http://localhost:3001/items";
 
 
 function ProductPage() {
