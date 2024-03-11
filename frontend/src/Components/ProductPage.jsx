@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ItemCard from "./ItemCard";
+import Sort from "./Sort";
 import "./productPage.css";
 
 const API_URL = "http://localhost:3001/items";
@@ -9,6 +10,7 @@ function ProductPage() {
 
     const [items, setItems] = useState([]);
     const [filterQuery, setFilterQuery] = useState("");
+    const [sortedFilteredData, setSortedFilteredData] = useState([]);
 
     const searchItems = async () => {
       const response = await fetch(API_URL);
@@ -21,28 +23,44 @@ function ProductPage() {
       searchItems();
     }, []);
 
+    useEffect(() => {
+      const filterData=filterItems(filterQuery);
+      const sortedData=handleSort(filterData);
+      setSortedFilteredData(sortedData);
+    }, [filterQuery, items]);
+
+
+
     const filterItems = (query) => {
       return items.filter((item) => {
         return item.title.toLowerCase().includes(query.toLowerCase());
       });
     };
-
+  const handleSort= (data) => {
+    return data;
+  }
   return (
     <div>
         <h1 className="logo">ProductForge</h1>
-        <div className='search'>
-            <input 
-                placeholder="Search for products"
-                value={filterQuery}
-                onChange={(e) => setFilterQuery(e.target.value)}
-            />
-            <img src="https://raw.githubusercontent.com/gist/adrianhajdin/997a8cdf94234e889fa47be89a4759f1/raw/f13e5a9a0d1e299696aa4a0fe3a0026fa2a387f7/search.svg"
-                alt="search"
-                onClick={() => {}}
-            />
+        <div className="custom-flex">
+            <div className='search'>
+                <input 
+                    placeholder="Search for products"
+                    value={filterQuery}
+                    onChange={(e) => setFilterQuery(e.target.value)}
+                />
+                <img src="https://raw.githubusercontent.com/gist/adrianhajdin/997a8cdf94234e889fa47be89a4759f1/raw/f13e5a9a0d1e299696aa4a0fe3a0026fa2a387f7/search.svg"
+                    alt="search"
+                    onClick={() => {}}
+                />
+            </div>
+        <div className="sort">
+          <Sort jsonData={sortedFilteredData} onDataSort={setSortedFilteredData}/>
+        </div>
+
         </div>
         {
-            filterItems(filterQuery).length === 0
+            sortedFilteredData.length === 0
             ? (
                 <div className="empty">
                     <h2>No items found</h2>
@@ -50,7 +68,7 @@ function ProductPage() {
             ) :
             (
                 <div className='container'>
-                    {filterItems(filterQuery).map((item) => (
+                    {sortedFilteredData.map((item) => (
                         <ItemCard key={item.id} item={item}/>
                     ))}
                 </div>

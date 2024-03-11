@@ -148,6 +148,11 @@
 .item:hover div:nth-of-type(1) {
   opacity: 1;
 }
+.custom-flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media screen and (max-width: 600px) {
   .app {
