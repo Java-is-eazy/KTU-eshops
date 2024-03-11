@@ -1,4 +1,5 @@
 const ItemCard = ({item}) => {
+  const promotion = Boolean();
     return (
       <div  className='item'>
       <div>
@@ -9,6 +10,9 @@ const ItemCard = ({item}) => {
       </div>
         <div>
             <span>{item.title}</span>
+        </div>
+        <div>
+        {promotion && <div>Promotion</div>}
         </div>
       </div>
     )

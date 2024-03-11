@@ -22,23 +22,27 @@ function ProductPage() {
     useEffect(() => {
       searchItems();
     }, []);
-
+    
     useEffect(() => {
       const filterData=filterItems(filterQuery);
       const sortedData=handleSort(filterData);
       setSortedFilteredData(sortedData);
     }, [filterQuery, items]);
-
-
-
-    const filterItems = (query) => {
-      return items.filter((item) => {
+    const filterItems = (query) => { 
+        return items.filter((item) => {
         return item.title.toLowerCase().includes(query.toLowerCase());
       });
     };
-  const handleSort= (data) => {
-    return data;
-  }
+    const handleSort = (data) => {
+      // Move items with true boolean property to the front
+      data.sort((a, b) => {
+        if (a.booleanProperty === b.booleanProperty) {
+          return 0;
+        }
+        return a.booleanProperty ? -1 : 1;
+      });
+      return data;
+    };
   return (
     <div>
         <h1 className="logo">ProductForge</h1>

@@ -70,7 +70,10 @@
   align-items: center;
   flex-wrap: wrap;
 }
-
+.promoted {
+  background-color: EEC239;
+  opacity: 0,3;
+}
 .item {
   width: 310px;
   height: 460px;

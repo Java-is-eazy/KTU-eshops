@@ -51,19 +51,22 @@
         "id": 9,
         "title": "Memory Foam Travel Pillow",
         "price": 19.75,
-        "image": "https://m.media-amazon.com/images/I/81Fy+yZT+xL._AC_UL480_FMwebp_QL65_.jpg"
+        "image": "https://m.media-amazon.com/images/I/81Fy+yZT+xL._AC_UL480_FMwebp_QL65_.jpg",
+        "promotion": true
     },
     {
         "id": 10,
         "title": "Portable USB Desk Fan",
         "price": 11.49,
-        "image": "https://m.media-amazon.com/images/I/71rToe5LWaL._AC_UY327_FMwebp_QL65_.jpg"
+        "image": "https://m.media-amazon.com/images/I/71rToe5LWaL._AC_UY327_FMwebp_QL65_.jpg",
+        "promotion": true
     },
     {
         "id": 11,
         "title": "Compact Folding Umbrella",
         "price": 8.99,
-        "image": "https://m.media-amazon.com/images/I/71WW2xGiBzL._AC_UL480_FMwebp_QL65_.jpg"
+        "image": "https://m.media-amazon.com/images/I/71WW2xGiBzL._AC_UL480_FMwebp_QL65_.jpg",
+        "promotion": true
     },
     {
         "id": 12,
