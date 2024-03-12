@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './authPage.css';
-import backgroundImage from '../assets/auth-bg.jpg'; // Import the background image
+import backgroundImage from '../assets/auth-bg.jpg';
+import { useNavigate } from 'react-router-dom'; 
 
 const Authentication = () => {
     const [isLogin, setIsLogin] = useState(true);
+    const navigate = useNavigate();
+
     const handleLoginClick = () => {
         setIsLogin(true);
     };
@@ -11,6 +14,18 @@ const Authentication = () => {
     const handleSignupClick = () => {
         setIsLogin(false);
     };
+
+    const handleLogin = () => {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        if (username === '' || password === '') {
+          alert('Please fill in all fields');
+          return;
+        }
+        console.log(username, password);
+      navigate('/');
+    };
+
     return (
     <div className="full-height" style={{backgroundImage: `url(${backgroundImage})`, backgroundSize:'cover', backgroundPosition: 'bottom right'}}>
       <div className="auth-container">
@@ -28,7 +43,7 @@ const Authentication = () => {
             <p>Password</p>
             <input className='input' type="password" name="password" id="password" />
             <p className="forgot-password">Forgot Password?</p>
-            <button className="submit-btn">Login</button>
+            <button className="submit-btn" onClick={(handleLogin)}>Login</button>
           </div>
         ) : (
           <div className='form-container'>

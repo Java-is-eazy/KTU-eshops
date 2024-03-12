@@ -1,0 +1,43 @@
+.site-header {
+    background-color: #334155;
+    /* idk which color to use, the design didnt specify: 
+    #64748B
+    #EEC239
+    #334155
+    #5C6777
+    
+    */
+    border-bottom: 1px solid #000;
+    padding: .5em 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-size: large;
+}
+
+.site-identity {
+    display: flex;
+    align-items: center;
+}
+
+.site-identity a {
+    font-size: 1.5em;
+    margin-right: 1em;
+}
+
+.site-navigation ul,
+.site-navigation li {
+    margin: 0;
+    padding: 0;
+}
+
+.site-navigation li {
+    display: inline-block;
+    margin: 1.4em 1em 1em 1em;
+}
