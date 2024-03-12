@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ItemCard from "./ItemCard";
 import Sort from "./Sort";
 import "./productPage.css";
+import Header from "./Header";
 
 const API_URL = "http://localhost:3001/items";
 
@@ -45,7 +46,7 @@ function ProductPage() {
     };
   return (
     <div>
-        <h1 className="logo">ProductForge</h1>
+        <Header />
         <div className="custom-flex">
             <div className='search'>
                 <input 
