@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import ItemCard from "./ItemCard";
 import Sort from "./Sort";
 import "./productPage.css";
-import Header from "./Header";
 
-const API_URL = "http://localhost:3001/items";
+const API_URL = `${window.location.protocol}//${window.location.hostname}:3001/items`;
 
 
 function ProductPage() {
@@ -46,7 +45,6 @@ function ProductPage() {
     };
   return (
     <div>
-        <Header />
         <div className="custom-flex">
             <div className='search'>
                 <input 
