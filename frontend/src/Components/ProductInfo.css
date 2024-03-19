@@ -1,0 +1,140 @@
+h1 {
+    color: #ffffff;
+}
+
+p {
+    color: white;
+    font-size: 20px;
+}
+
+.price {
+    color: #ffffff;
+    font-size: 30px;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    padding: 2rem;
+    padding-top: 6rem;
+}
+
+.info-right {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: baseline;
+    width: 50vw;
+    height: auto;
+    justify-content: space-between;
+}
+
+.picture {
+    border-radius: 5px;
+    width: 50%;
+    height: auto;
+    cursor: pointer;
+}
+
+.picture:hover::before {
+    opacity: 1;
+}
+
+.picture:hover {
+    opacity: 0.85;
+}
+
+.buy {
+    padding: 20px 10px;
+    color: #000000;
+    text-decoration: none;
+    background: #ffce00;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 80%;
+    min-width: fit-content;
+    cursor: pointer;
+}
+
+.buy:active {
+    box-shadow: inset 0px 3px 5px black;
+}
+
+.prod-info {
+    margin-left: 10%;
+    height: 40%;
+}
+
+.add-to-cart {
+    display: inline-flex;
+    margin-left: 10%;
+    height: 5rem;
+}
+
+.description {
+    padding: 2rem;
+    width: 60%;
+}
+
+.seller {
+    display: flex;
+    flex-direction: row;
+    padding: 2rem;
+    width: 100%;
+}
+
+.seller-name {
+    font-size: 30px;
+    margin-left: 2rem;
+}
+
+.seller-img {
+    border-radius: 200px;
+    width: 100px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:1000px){
+    .info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .picture {
+        width: 100%;
+        cursor: pointer;
+        margin: 2rem;
+        height: auto;
+        border-style: dashed;
+    }
+
+    .add-to-cart {
+        width: 100%;
+    }
+    
+    .prod-info {
+        margin-left: 0px;
+    }
+
+    .info-right {
+        align-self: start;
+        width: 100%;
+        border-style: dashed;
+        height: 30vh;
+    }
+
+    .description {
+        width: 100%;
+    }
+
+    .seller {
+        width: 100%;
+    }
+
+    .seller-name {
+        font-size: 20px;
+        margin-left: 2rem;
+    }
+}

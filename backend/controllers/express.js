@@ -37,8 +37,22 @@ const setupExpress = (app) => {
     fs.readFile(filePath, (err, data) => {
       if (err) {
         res.status(500).send("Error reading the JSON file");
+        return;
+      }
+      const items = JSON.parse(data);
+
+      if (req.query.itemid) {
+        const itemId = req.query.itemid;
+        const item = items.find((item) => item.id.toString() === itemId);
+
+        if (!item) {
+          res.status(500).send("Item not found");
+          return;
+        }
+
+        res.json(item);
       } else {
-        res.json(JSON.parse(data));
+        res.json(items);
       }
     });
   });
