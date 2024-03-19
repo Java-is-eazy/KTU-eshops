@@ -1,9 +1,12 @@
 [
     {
         "id": 1,
-        "title": "Hair Brush",
-        "price": 17.34,
-        "image": "https://hips.hearstapps.com/hmg-prod/images/black-hairbrush-on-pink-background-royalty-free-image-1691505917.jpg?crop=0.665xw:1.00xh;0.0918xw,0&resize=980:*"
+        "title": "Microsoft laptop",
+        "price": 350,
+        "image": "https://www.zdnet.com/a/img/resize/b523af5e4d7b939c6abf60609f068ca5f7fff48c/2021/05/12/2ac0c902-8e15-4481-90c0-7d9f52182a1a/best-laptop-for-college-microsoft-surface-laptop-3.jpg?auto=webp&width=1280",
+        "description": "Hey there! Got a solid deal for you – a used Microsoft laptop that's been a trusty companion of mine and could be yours too! This laptop has been reliable through thick and thin. It might not be brand new, but it's got plenty of life left in it. Powered by Microsoft, you know you're getting quality. It's perfect for work or play, with a sleek design and powerful performance. Whether you're typing up reports or streaming your favorite shows, this laptop can handle it all. Plus, since it's used, you won't have to break the bank to get your hands on it. Trust me, it's a steal for anyone in need of a reliable and affordable laptop upgrade.",
+        "seller": "John Whick",
+        "sellerimg": "https://e7.pngegg.com/pngimages/419/473/png-clipart-computer-icons-user-profile-login-user-heroes-sphere-thumbnail.png"
     },
     {
         "id": 2,

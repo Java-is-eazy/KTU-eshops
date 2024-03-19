@@ -8,6 +8,7 @@ import "./App.css";
 import ProductPage from "./Components/ProductPage";
 import Authentication from "./Components/Authentication";
 import Header from "./Components/Header";
+import ProductInfo from "./Components/ProductInfo";
 
 const App = () => {
   return (
@@ -28,6 +29,15 @@ const App = () => {
             <>
               <Header />
               <Authentication />
+            </>
+          }
+        />
+        <Route
+          path="/product/:productId"
+          element={
+            <>
+              <Header />
+              <ProductInfo />
             </>
           }
         />
