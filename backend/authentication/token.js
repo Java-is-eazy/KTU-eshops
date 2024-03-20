@@ -15,6 +15,7 @@ const verifyToken = (token) => {
       return "Token Expired";
     }
   } catch (error) {
+    console.log(error);
     return false;
   }
 };

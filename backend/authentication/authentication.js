@@ -18,12 +18,15 @@ const tryLogin = async (username, password) => {
     if (user.password !== hashedPassword) {
       throw new Error("Incorrect password");
     }
-    return generateToken({ role: user.role, id: user.id });
+    return {
+      username: user.username,
+      token: generateToken({ role: user.role, id: user.id }),
+    };
   } catch (error) {
     throw Error(error.message);
   }
 };
-const register = async (username, password, email, role) => {
+const register = async (username, password, email, phone) => {
   try {
     if (!username || !password) {
       throw new Error("Please fill in all fields");
@@ -36,7 +39,7 @@ const register = async (username, password, email, role) => {
       throw new Error("User already exists");
     }
 
-    await createUser(username, hashedPassword, email, role);
+    await createUser(username, hashedPassword, email, phone);
   } catch (error) {
     throw Error(error.message);
   }
