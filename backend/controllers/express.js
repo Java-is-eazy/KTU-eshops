@@ -10,27 +10,31 @@ const fs = require("fs");
 
 const setupExpress = (app) => {
   app.post("/login", async (req, res) => {
-    const { username, password } = req.body;
-    if (!username || !password) {
-      res.status(400).send("Please fill in all fields");
-      return;
-    }
     try {
+      const { username, password } = req.body;
+      if (!username || !password) {
+        res.status(400).send("Please fill in all fields");
+        return;
+      }
       const user = await tryLogin(username, password);
-      console.log(user);
-
       res.status(200).send(user);
     } catch (error) {
       res.status(400).send(error.message);
     }
   });
   app.post("/register", (req, res) => {
-    const { username, password } = req.body;
-    if (!username || !password) {
-      res.status(400).send("Please fill in all fields");
+    try {
+      const { username, password, email, phone } = req.body;
+      if (!username || !password || !email || !phone) {
+        res.status(400).send("Please fill in all fields");
+        return;
+      }
+      register(username, password, email, phone);
+      res.status(200).send("Success");
+    } catch (error) {
+      res.status(400).send(error.message);
       return;
     }
-    res.status(200).send("Success");
   });
   app.get("/items", (req, res) => {
     const filePath = path.join(__dirname, "../items-placeholder.json");

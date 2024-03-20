@@ -80,6 +80,12 @@
     border-top-left-radius: 3rem;
     border-bottom-left-radius: 3rem;
   }
+
+.incorrect {
+  border: 1px solid red !important;
+  background-color: #ffe6e6 !important;
+}
+
   
   .form-container {
     display: flex;
@@ -118,7 +124,7 @@
   }
   
   .submit-btn {
-    background-color: #00d100;
+    background-color: #36c436;
     color: #000;
     border-radius: 3rem;
     padding: 0.7rem;
@@ -129,6 +135,9 @@
   .submit-btn:hover{
     background-color: #009700;
   }
+  .submit-btn:active {
+    box-shadow: inset 0px 3px 5px black;
+}
   .full-height {
     width: 100%;
     height: 100%;

@@ -1,19 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from '../assets/logo.png';
 import './header.css';
 
-function Header() {
+function Header({ token, setToken }) {
   const location = useLocation();
-  const [currentLocation, setCurrentLocation] = useState(location.pathname);
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [currentLocation, setCurrentLocation] = useState(location.pathname);
+
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   }
 
-  useEffect(() => {
+  if (currentLocation !== location.pathname) {
     setCurrentLocation(location.pathname);
-  }, [location.pathname]);
+  }
 
   return (
     <header className="site-header">
@@ -29,9 +30,16 @@ function Header() {
         </ul>
         <ul className={`links ${isCollapsed ? 'hide' : ''}`}>
           <li><Link to="/" className={`navlink ${currentLocation === '/' ? 'active' : ''}`}>Home</Link></li> 
-          <li><Link to="/login" className={`navlink ${currentLocation === '/login' ? 'active' : ''}`}>Login</Link></li> 
+          <li>
+            <Link 
+              to="/login" 
+              onClick={() => { if (token !== "") setToken(''); }} 
+              className={`navlink ${currentLocation === '/login' ? 'active' : ''}`}
+            >
+              {token === "" ? 'Login' : 'Logout'}
+            </Link>
+          </li>
         </ul>
-
       </nav>
     </header>
   )

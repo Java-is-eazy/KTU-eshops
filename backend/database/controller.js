@@ -1,51 +1,62 @@
 const { connection } = require("../database/databaseSetup");
 
 const getItems = () => {
-  const query = "SELECT * FROM Products";
   return new Promise((resolve, reject) => {
-    connection.query(query, (error, results) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(results);
-      }
-    });
+    try {
+      connection.query("SELECT * FROM Items", (error, results) => {
+        if (error) {
+          throw Error(error);
+        } else {
+          resolve(results);
+        }
+      });
+    } catch (error) {
+      reject(error);
+    }
   });
 };
 
-const createUser = (username, password, email, role) => {
+const createUser = (username, password, email, phone) => {
   return new Promise((resolve, reject) => {
-    connection.query(
-      "INSERT INTO Users (username, password, email, role) VALUES (?, ?, ?, ?)",
-      [username, password, email, role],
-      (error, results) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(results.insertId);
+    try {
+      connection.query(
+        "INSERT INTO Users (username, password, email, phone) VALUES (?, ?, ?, ?)",
+        [username, password, email, phone],
+        (error, results) => {
+          if (error) {
+            throw Error(error);
+          } else {
+            resolve(results);
+          }
         }
-      }
-    );
+      );
+    } catch (error) {
+      reject(error);
+    }
   });
 };
 
 const getUserByUsername = (username) => {
   return new Promise((resolve, reject) => {
-    connection.query(
-      "SELECT * FROM Users WHERE username = ?",
-      [username],
-      (error, results) => {
-        if (error) {
-          reject(error);
-        } else {
-          if (results.length > 0) {
-            resolve(results[0]);
+    try {
+      connection.query(
+        "SELECT * FROM Users WHERE username = ?",
+        [username],
+        (error, results) => {
+          if (error) {
+            throw Error(error);
           } else {
-            resolve(null); // User not found
+            if (results.length > 0) {
+              resolve(results[0]);
+            } else {
+              resolve(null);
+            }
           }
         }
-      }
-    );
+      );
+    } catch (error) {
+      reject(error);
+    }
   });
 };
 

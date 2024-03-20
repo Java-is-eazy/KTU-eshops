@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './authPage.css';
-import backgroundImage from '../assets/auth-bg.jpg'; // Import the background image
+import backgroundImage from '../assets/auth-bg.jpg';
+import { useNavigate } from 'react-router-dom';
 
-const Authentication = () => {
+
+const Authentication = ({setToken}) => {
+  const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(true);
     const handleLoginClick = () => {
         setIsLogin(true);
@@ -11,6 +14,37 @@ const Authentication = () => {
         setIsLogin(false);
     };
 
+    const isValidPhoneNumber = (phoneNumber) => {
+      const phoneRegex = /^\+\d{11}$/;
+      if (!phoneRegex.test(phoneNumber)) {
+          throw Error("Invalid phone number");
+      }
+    };
+    const isValidEmail = (email) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        throw Error("Invalid email");
+      }
+    };
+    const isStrongPassword = (password) => {
+      if (password.length < 8) {
+        throw Error("Password is too short"); 
+      }
+  
+      if (!/[A-Z]/.test(password)) {
+        throw Error("Missing uppercase letters"); 
+      }
+  
+      if (!/[a-z]/.test(password)) {
+        throw Error("Missing lowercase letters");
+      }
+  
+      if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {
+        throw Error("Missing special characters");
+      }
+      return true;
+  };
+  
     const handleLogin = () => {
       try {
         const username = document.getElementById('loginUsername').value;
@@ -18,6 +52,23 @@ const Authentication = () => {
         if (username === '' || password === '') {
             throw new Error('Please fill in all fields');
         }
+        isStrongPassword(password);
+        fetch('http://localhost:3001/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, password }),
+        })
+          .then(async (response) => {
+            if (!response.ok) {
+              throw new Error(await response.text());
+            }
+            const data = await response.json();
+            setToken(await data.token);
+            alert('User logged in successfully', data.token);
+            navigate('/');
+          });
       } catch (error) {
         alert(error.message);
       }
@@ -27,6 +78,12 @@ const Authentication = () => {
       try {
         const username = document.getElementById('signupUsername').value;
         const password = document.getElementById('password').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+
+        isValidPhoneNumber(phone);
+        isValidEmail(email);
+        isStrongPassword(password);
         const confirmPassword = document.getElementById('confirmPassword').value;
         if (username === '' || password === '' || confirmPassword === '') {
             throw new Error('Please fill in all fields');
@@ -34,6 +91,20 @@ const Authentication = () => {
         if (password !== confirmPassword) {
             throw new Error('Passwords do not match');
         }
+        fetch('http://localhost:3001/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, password, email, phone }),
+        })
+          .then(async (response) => {
+            if (!response.ok) {
+              throw new Error(await response.text());
+            }
+            alert('User registered successfully');
+          })
+
       } catch (error) {
         alert(error.message);
       }
@@ -65,6 +136,10 @@ const Authentication = () => {
             <input className='input' type="text" name="username" id="signupUsername" data-testid="signupUsername"/>
             <p>Password</p>
             <input className='input' type="password" name="password" id="password" data-testid="signupPassword" />
+            <p>Email</p>
+            <input className='input' type="email" name="email" id="email" data-testid="signupEmail"/>
+            <p>Phone</p>
+            <input className='input' type="text" name="phone" id="phone" data-testid="signupPhone"/>
             <p>Confirm Password</p>
             <input className='input' type="password" name="password" id="confirmPassword" data-testid="confirmPassword" />
             <button className="submit-btn" onClick={handleRegister} data-testid="signupBttn">Signup</button>
