@@ -66,7 +66,7 @@ const Authentication = ({setToken}) => {
             }
             const data = await response.json();
             setToken(await data.token);
-            alert('User logged in successfully', data.token);
+            alert('User logged in successfully');
             navigate('/');
           });
       } catch (error) {
@@ -80,10 +80,6 @@ const Authentication = ({setToken}) => {
         const password = document.getElementById('password').value;
         const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
-
-        isValidPhoneNumber(phone);
-        isValidEmail(email);
-        isStrongPassword(password);
         const confirmPassword = document.getElementById('confirmPassword').value;
         if (username === '' || password === '' || confirmPassword === '') {
             throw new Error('Please fill in all fields');
@@ -91,6 +87,9 @@ const Authentication = ({setToken}) => {
         if (password !== confirmPassword) {
             throw new Error('Passwords do not match');
         }
+        isValidPhoneNumber(phone);
+        isValidEmail(email);
+        isStrongPassword(password);
         fetch('http://localhost:3001/register', {
           method: 'POST',
           headers: {
