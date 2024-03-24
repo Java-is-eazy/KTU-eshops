@@ -4,7 +4,7 @@ import backgroundImage from '../assets/auth-bg.jpg';
 import { useNavigate } from 'react-router-dom';
 
 
-const Authentication = ({setToken}) => {
+const Authentication = ({setToken, setUser}) => {
   const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(true);
     const handleLoginClick = () => {
@@ -66,6 +66,7 @@ const Authentication = ({setToken}) => {
             }
             const data = await response.json();
             setToken(await data.token);
+            setUser(await data.username);
             alert('User logged in successfully');
             navigate('/');
           });

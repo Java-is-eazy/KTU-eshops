@@ -13,6 +13,7 @@ import ProductInfo from "./Components/ProductInfo";
 
 const App = () => {
   const [token, setToken] = useState("");
+  const [username, setUser] = useState("");
   return (
     <Router>
       <Routes>
@@ -30,7 +31,7 @@ const App = () => {
           element={
             <>
               <Header token={token} setToken={setToken} />
-              <Authentication setToken={setToken} />
+              <Authentication setToken={setToken} setUser={setUser} />
             </>
           }
         />

@@ -17,7 +17,8 @@ const setupExpress = (app) => {
         return;
       }
       const user = await tryLogin(username, password);
-      res.status(200).send(user);
+      const userJson = JSON.stringify(user, username);
+      res.status(200).send(userJson);
     } catch (error) {
       res.status(400).send(error.message);
     }
