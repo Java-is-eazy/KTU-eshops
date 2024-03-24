@@ -75,7 +75,11 @@
     background: #64748B;
   }
   
-  
+.card.promoted {
+  /* Styles specific to promoted items */
+  background-color: #ef9322; /* Example background color for promoted items */
+  opacity: 0.8; /* Example opacity for promoted items */
+}
 
 .card .imgBox {
   position: relative;
