@@ -16,19 +16,27 @@ export default function Sort({ jsonData, onDataSort }) {
             nonPromotedItems.sort((a, b) => a.title.localeCompare(b.title));
         } else if (sortBy === "ZtoA") {
             nonPromotedItems.sort((a, b) => b.title.localeCompare(a.title));
+        } else if (sortBy === "priceLowToHigh") {
+            nonPromotedItems.sort((a, b) => a.price - b.price);
+        } else if (sortBy === "priceHighToLow") {
+            nonPromotedItems.sort((a, b) => b.price - a.price);
         }
 
         // Concatenate promoted items with the sorted non-promoted items
         const sortedData = [...promotedItems, ...nonPromotedItems];
-        
-        // Update the sorted data using onDataSort
-        onDataSort(sortedData);
+
+        // Check if sortedData is different from jsonData before calling onDataSort
+        if (JSON.stringify(sortedData) !== JSON.stringify(jsonData)) {
+            onDataSort(sortedData);
+        }
     }, [sortBy, jsonData, onDataSort]);
 
     return (
         <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
             <option value="alphabetically">A to Z</option>
             <option value="ZtoA">Z to A</option>
+            <option value="priceLowToHigh">Low to High</option>
+            <option value="priceHighToLow">High to Low</option>
         </select>
     );
 }
