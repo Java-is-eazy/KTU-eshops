@@ -1,19 +1,20 @@
-
 * {
   box-sizing: border-box;
 }
 select {
+  text-align: center;
   appearance: none;
   border: 0;
   outline: 0;
   font: inherit;
-  width: 10rem;
-  padding: 1rem 4rem 1rem 1rem;
+  width: 8rem;
+  height: 5rem;
+  padding: 1rem 1rem 1rem 0.3rem;
   background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
     linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
   color: white;
-  border-radius: 0.25em;
-  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  border-radius: 1.5em; /* Adjust the value as needed */
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.5);
   cursor: pointer;
   &::-ms-expand {
     display: none;
