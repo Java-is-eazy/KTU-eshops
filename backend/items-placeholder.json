@@ -312,19 +312,22 @@
         "id": 52,
         "title": "Fitness Foam Roller",
         "price": 16.50,
-        "image": "https://hips.hearstapps.com/hmg-prod/images/gettyimages-1187142323.jpg"
+        "image": "https://hips.hearstapps.com/hmg-prod/images/gettyimages-1187142323.jpg",
+        "promoted": true
     },
     {
         "id": 53,
         "title": "Handheld Milk Frother",
         "price": 14.99,
-        "image": "https://m.media-amazon.com/images/I/71awEli5TGL.jpg"
+        "image": "https://m.media-amazon.com/images/I/71awEli5TGL.jpg",
+        "promoted": true
     },
     {
         "id": 54,
         "title": "Portable Laptop Stand",
         "price": 27.99,
-        "image": "https://media.startech.com/cms/products/gallery_large/ltriserp.main.jpg"
+        "image": "https://media.startech.com/cms/products/gallery_large/ltriserp.main.jpg",
+        "promoted": true
     },
     {
         "id": 55,
@@ -342,7 +345,8 @@
         "id": 57,
         "title": "Solar Powered Outdoor String Lights",
         "price": 19.99,
-        "image": "https://m.media-amazon.com/images/I/71LwWC-4B5S._AC_UF894,1000_QL80_.jpg"
+        "image": "https://m.media-amazon.com/images/I/71LwWC-4B5S._AC_UF894,1000_QL80_.jpg",
+        "promoted": true
     },
     {
         "id": 58,
@@ -366,7 +370,8 @@
         "id": 61,
         "title": "Portable Folding Table",
         "price": 32.25,
-        "image": "https://m.media-amazon.com/images/I/61hfsx5+XKL.jpg"
+        "image": "https://m.media-amazon.com/images/I/61hfsx5+XKL.jpg",
+        "promoted": true
     },
     {
         "id": 62,
@@ -378,13 +383,15 @@
         "id": 63,
         "title": "3-in-1 Wireless Charging Station",
         "price": 49.95,
-        "image": "https://m.media-amazon.com/images/I/61cSQVo4SKL.jpg"
+        "image": "https://m.media-amazon.com/images/I/61cSQVo4SKL.jpg",
+        "promoted": true
     },
     {
         "id": 64,
         "title": "Bamboo Cutting Board Set",
         "price": 26.50,
-        "image": "https://ecowarriorph.com/wp-content/uploads/2021/10/chopping-board-scaled.jpg"
+        "image": "https://ecowarriorph.com/wp-content/uploads/2021/10/chopping-board-scaled.jpg",
+        "promoted": true
     },
     {
         "id": 65,
@@ -396,7 +403,8 @@
         "id": 66,
         "title": "Waterproof Phone Pouch",
         "price": 9.95,
-        "image": "https://rockagator.com/cdn/shop/products/blackpouchf_1000x.JPG?v=1532448613"
+        "image": "https://rockagator.com/cdn/shop/products/blackpouchf_1000x.JPG?v=1532448613",
+        "promoted": true
     },
     {
         "id": 67,
@@ -408,7 +416,8 @@
         "id": 68,
         "title": "Dual USB Car Charger",
         "price": 8.99,
-        "image": "https://i-tec.pro/wp-content/uploads/2018/03/CHARGER-CAR2A1w01-1024x1024.jpg"
+        "image": "https://i-tec.pro/wp-content/uploads/2018/03/CHARGER-CAR2A1w01-1024x1024.jpg",
+        "promoted": true
     },
     {
         "id": 69,
