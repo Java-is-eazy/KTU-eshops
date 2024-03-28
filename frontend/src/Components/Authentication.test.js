@@ -27,10 +27,10 @@ describe("Authentication Component", () => {
     const { getByTestId } = render(<Authentication setToken={() => {}} />);
 
     fireEvent.change(getByTestId("loginUsername"), {
-      target: { value: "loginUsernam546dĖĄQČĄ%#$#e" },
+      target: { value: "loginUsername" },
     });
     fireEvent.change(getByTestId("loginPassword"), {
-      target: { value: "loginUsernam546dĖĄQČĄ%#$#e" },
+      target: { value: "loginUsername" },
     });
     fireEvent.click(getByTestId("loginBttn"));
 
@@ -41,8 +41,8 @@ describe("Authentication Component", () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: "loginUsernam546dĖĄQČĄ%#$#e",
-          password: "loginUsernam546dĖĄQČĄ%#$#e",
+          username: "loginUsername",
+          password: "loginUsername",
         }),
       });
       expect(ReactRouter.useNavigate).toHaveBeenCalledWith();

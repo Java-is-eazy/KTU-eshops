@@ -51,7 +51,7 @@ function ProductPage() {
   };
 
     return (
-        <div>
+        <div data-testid="item-list">
             <div className="custom-flex">
                 <div className='search'>
                     <input 
