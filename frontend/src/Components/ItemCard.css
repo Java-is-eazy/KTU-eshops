@@ -118,6 +118,7 @@
 
 .card .contentBox .buy {
   position: relative;
+  text-align: center;
   top: 100px;
   opacity: 0;
   padding: 10px 30px;
