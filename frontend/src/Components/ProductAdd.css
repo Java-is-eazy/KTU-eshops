@@ -14,6 +14,7 @@
 .submit-btn {
     width: 50%;
     min-width: 30%;
+    margin-bottom: 3rem;
 }
 
 p {
@@ -26,4 +27,23 @@ p {
     justify-self: baseline;
     align-self: baseline;
     margin-bottom: 10%;
+}
+
+.upload {
+    display: none;
+}
+
+.custom-file-upload {
+    color: #EEC239;
+    font-size: 50px;
+    cursor: pointer;
+    justify-self: baseline;
+    align-self: baseline;
+}
+
+.display-img {
+    justify-self: baseline;
+    align-self: baseline;
+    display: flex;
+    flex-direction: row;
 }
