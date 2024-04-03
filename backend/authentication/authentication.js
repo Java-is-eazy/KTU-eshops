@@ -5,18 +5,18 @@ const { generateToken } = require("./token");
 const tryLogin = async (username, password) => {
   try {
     if (!username || !password) {
-      throw new Error("Please fill in all fields");
+      throw Error("Please fill in all fields");
     }
 
     const hashedPassword = hashPassword(username, password);
 
     const user = await getUserByUsername(username);
     if (!user) {
-      throw new Error("User does not exist");
+      throw Error("User does not exist");
     }
 
     if (user.password !== hashedPassword) {
-      throw new Error("Incorrect password");
+      throw Error("Incorrect password");
     }
     return {
       username: user.username,
@@ -29,19 +29,19 @@ const tryLogin = async (username, password) => {
 const register = async (username, password, email, phone) => {
   try {
     if (!username || !password) {
-      throw new Error("Please fill in all fields");
+      throw Error("Please fill in all fields");
     }
 
     const hashedPassword = hashPassword(username, password);
 
     const user = await getUserByUsername(username);
     if (user) {
-      throw new Error("User already exists");
+      throw Error("User already exists");
     }
 
     await createUser(username, hashedPassword, email, phone);
   } catch (error) {
-    throw Error(error.message);
+    throw error;
   }
 };
 

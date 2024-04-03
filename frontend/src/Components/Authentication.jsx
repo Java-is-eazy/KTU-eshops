@@ -53,7 +53,7 @@ const Authentication = ({setToken, setUser}) => {
             throw new Error('Please fill in all fields');
         }
         isStrongPassword(password);
-        fetch('http://localhost:3001/login', {
+        fetch(`${window.location.protocol}//${window.location.hostname}:3001/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -62,13 +62,15 @@ const Authentication = ({setToken, setUser}) => {
         })
           .then(async (response) => {
             if (!response.ok) {
-              throw new Error(await response.text());
+              alert(await response.text());
             }
-            const data = await response.json();
-            setToken(await data.token);
-            setUser(await data.username);
-            alert('User logged in successfully');
-            navigate('/');
+            else{
+              const data = await response.json();
+              setToken(await data.token);
+              setUser(await data.username);
+              alert('User logged in successfully');
+              navigate('/');
+            }
           });
       } catch (error) {
         alert(error.message);
@@ -91,7 +93,7 @@ const Authentication = ({setToken, setUser}) => {
         isValidPhoneNumber(phone);
         isValidEmail(email);
         isStrongPassword(password);
-        fetch('http://localhost:3001/register', {
+        fetch(`${window.location.protocol}//${window.location.hostname}:3001/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -100,9 +102,12 @@ const Authentication = ({setToken, setUser}) => {
         })
           .then(async (response) => {
             if (!response.ok) {
-              throw new Error(await response.text());
+              alert(await response.text());
             }
-            alert('User registered successfully');
+            else{
+              alert('User registered successfully');
+              setIsLogin(true);
+            }
           })
 
       } catch (error) {

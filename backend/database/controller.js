@@ -38,13 +38,13 @@ const createUser = (username, password, email, phone) => {
 
 const getUserByUsername = (username) => {
   return new Promise((resolve, reject) => {
-    try {
-      connection.query(
-        "SELECT * FROM Users WHERE username = ?",
-        [username],
-        (error, results) => {
+    connection.query(
+      "SELECT * FROM Users WHERE username = ?",
+      [username],
+      (error, results) => {
+        try {
           if (error) {
-            throw Error(error);
+            throw error;
           } else {
             if (results.length > 0) {
               resolve(results[0]);
@@ -52,11 +52,11 @@ const getUserByUsername = (username) => {
               resolve(null);
             }
           }
+        } catch (error) {
+          reject(error);
         }
-      );
-    } catch (error) {
-      reject(error);
-    }
+      }
+    );
   });
 };
 

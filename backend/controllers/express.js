@@ -23,21 +23,22 @@ const setupExpress = (app) => {
       res.status(400).send(error.message);
     }
   });
-  app.post("/register", (req, res) => {
+
+  app.post("/register", async (req, res) => {
     try {
       const { username, password, email, phone } = req.body;
       if (!username || !password || !email || !phone) {
         res.status(400).send("Please fill in all fields");
         return;
       }
-      register(username, password, email, phone);
+      await register(username, password, email, phone);
       res.status(200).send("Success");
     } catch (error) {
       res.status(400).send(error.message);
-      return;
     }
   });
-  app.get("/items", (req, res) => {
+
+  app.get("/items", async (req, res) => {
     const filePath = path.join(__dirname, "../items-placeholder.json");
     fs.readFile(filePath, (err, data) => {
       if (err) {
