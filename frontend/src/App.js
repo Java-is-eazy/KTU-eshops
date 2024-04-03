@@ -40,7 +40,8 @@ const App = () => {
           path="/addyourproduct"
           element={
             <>
-              <ProductAdd/>
+              <Header token={token} setToken={setToken} />
+              <ProductAdd token={token} setToken={setToken}/>
             </>
           }
         />

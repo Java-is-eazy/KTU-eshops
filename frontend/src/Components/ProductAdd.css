@@ -47,3 +47,19 @@ p {
     display: flex;
     flex-direction: row;
 }
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10rem;
+}
+
+h2 {
+    color: white;
+}
+
+.log-btn {
+    margin-top: 3rem;
+}

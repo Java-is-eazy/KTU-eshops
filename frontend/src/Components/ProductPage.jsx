@@ -54,7 +54,7 @@ function ProductPage() {
 
     return (
         <div data-testid="item-list">
-            <Link to='/addyourproduct' className="prdAdd"><img src={plus} alt="Add" className="addimg"/></Link>
+            <Link to='/addyourproduct'  className="prdAdd"><img src={plus} alt="Add" className="addimg"/></Link>
             <div className="custom-flex">
                 <div className='search'>
                     <input 
