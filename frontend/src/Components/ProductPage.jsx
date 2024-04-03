@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import ItemCard from "./ItemCard";
 import Sort from "./Sort";
 import "./productPage.css";
+import plus from "../assets/PrdAdd.png";
 
 const API_URL = `${window.location.protocol}//${window.location.hostname}:3001/items`;
 
@@ -52,6 +54,7 @@ function ProductPage() {
 
     return (
         <div data-testid="item-list">
+            <Link to='/addyourproduct'  className="prdAdd"><img src={plus} alt="Add" className="addimg"/></Link>
             <div className="custom-flex">
                 <div className='search'>
                     <input 

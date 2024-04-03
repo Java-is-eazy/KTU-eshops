@@ -10,6 +10,7 @@ import ProductPage from "./Components/ProductPage";
 import Authentication from "./Components/Authentication";
 import Header from "./Components/Header";
 import ProductInfo from "./Components/ProductInfo";
+import ProductAdd from "./Components/ProductAddition";
 
 const App = () => {
   const [token, setToken] = useState("");
@@ -32,6 +33,15 @@ const App = () => {
             <>
               <Header token={token} setToken={setToken} />
               <Authentication setToken={setToken} setUser={setUser} />
+            </>
+          }
+        />
+        <Route
+          path="/addyourproduct"
+          element={
+            <>
+              <Header token={token} setToken={setToken} />
+              <ProductAdd token={token} setToken={setToken}/>
             </>
           }
         />

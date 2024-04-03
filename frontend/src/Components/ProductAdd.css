@@ -1,0 +1,65 @@
+.add-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input {
+    width: 80%;
+    min-width: 50%;
+    height: 30px;
+}
+
+.submit-btn {
+    width: 50%;
+    min-width: 30%;
+    margin-bottom: 3rem;
+}
+
+p {
+    justify-self: baseline;
+    align-self: baseline;
+    margin-left: 10%;
+}
+.form-title {
+    color: #EEC239;
+    justify-self: baseline;
+    align-self: baseline;
+    margin-bottom: 10%;
+}
+
+.upload {
+    display: none;
+}
+
+.custom-file-upload {
+    color: #EEC239;
+    font-size: 50px;
+    cursor: pointer;
+    justify-self: baseline;
+    align-self: baseline;
+}
+
+.display-img {
+    justify-self: baseline;
+    align-self: baseline;
+    display: flex;
+    flex-direction: row;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10rem;
+}
+
+h2 {
+    color: white;
+}
+
+.log-btn {
+    margin-top: 3rem;
+}
