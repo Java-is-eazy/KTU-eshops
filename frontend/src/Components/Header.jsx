@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import logo from '../assets/logo.png';
 import './header.css';
 
-function Header({ token, setToken }) {
+function Header({ token, setToken, username }) {
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [currentLocation, setCurrentLocation] = useState(location.pathname);
@@ -39,6 +39,12 @@ function Header({ token, setToken }) {
               {token === "" ? 'Login' : 'Logout'}
             </Link>
           </li>
+          {token==="" ? null :
+          <li>
+            <Link to={`/userprofile/${username}`}>
+              My Profile
+            </Link>
+          </li>}
         </ul>
       </nav>
     </header>
