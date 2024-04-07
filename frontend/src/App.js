@@ -11,6 +11,7 @@ import Authentication from "./Components/Authentication";
 import Header from "./Components/Header";
 import ProductInfo from "./Components/ProductInfo";
 import ProductAdd from "./Components/ProductAddition";
+import CheckoutPage from "./Components/checkout";
 
 const App = () => {
   const [token, setToken] = useState("");
@@ -54,6 +55,15 @@ const App = () => {
             </>
           }
         />
+        <Route
+         path="/checkout"
+         element={
+          <>
+             <Header token={token} setToken={setToken} />
+            <CheckoutPage />
+            </>
+          }
+/>
         <Route
           path="/404"
           element={

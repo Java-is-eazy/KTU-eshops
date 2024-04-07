@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./ProductInfo.css";
 
 const API_URL = `${window.location.protocol}//${window.location.hostname}:3001/items`;
@@ -39,6 +40,11 @@ const ProductInfo = () => {
           </div>
           <div className="add-to-cart">
             <button className="buy">Add to cart</button>
+          </div>
+          <div className="buy-now">
+          <Link to="/checkout" style={{ width: "50%" }}>
+              <button className="buy">Buy</button>
+          </Link>
           </div>
         </div>
       </div>
