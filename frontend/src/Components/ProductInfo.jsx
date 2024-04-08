@@ -42,8 +42,13 @@ const ProductInfo = () => {
             <button className="buy">Add to cart</button>
           </div>
           <div className="buy-now">
-          <Link to="/checkout" style={{ width: "50%" }}>
-              <button className="buy">Buy</button>
+          <Link
+                to={{
+                  pathname: `/checkout/${product.id}`,
+                }}
+                style={{ width: '50%' }}
+              >
+               <button className="buy">Buy</button>
           </Link>
           </div>
         </div>

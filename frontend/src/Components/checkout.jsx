@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './checkoutPage.css';
+import { Link } from "react-router-dom";
+import {useParams} from 'react-router-dom';
 const CheckoutPage = () => {
-    // State for form inputs
+    const {productId} = useParams();
     const [formData, setFormData] = useState({
       fullName: '',
       email: '',
@@ -18,19 +20,11 @@ const CheckoutPage = () => {
         [name]: value
       });
     };
-  
-    // Function to handle form submission
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // You can handle form submission here, for example, send form data to server
-      console.log(formData);
-      // After submitting, you may want to redirect the user or show a confirmation message
-    };
-  
+
     return (
       <div className="checkout-container">
         <h2>Checkout</h2>
-        <form className="checkout-form" onSubmit={handleSubmit}>
+        <form className="checkout-form">
           <label htmlFor="fullName">Full Name:</label>
           <input type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} required />
   
@@ -45,11 +39,16 @@ const CheckoutPage = () => {
   
           <label htmlFor="postalCode">Postal Code:</label>
           <input type="text" id="postalCode" name="postalCode" value={formData.postalCode} onChange={handleChange} required />
-  
-          <button type="submit" className="checkout-button">Place Order</button>
+            <Link to={{
+                    pathname: `/payment/${productId}`,
+                    state: { formData: formData }
+            }}>
+              <button className="checkout-button">Payment</button>
+            </Link>
+          
         </form>
       </div>
     );
-  };
-  
-  export default CheckoutPage;
+};
+
+export default CheckoutPage;
