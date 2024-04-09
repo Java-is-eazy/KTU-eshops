@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+.sort{
+  margin-left: 10px;
+}
 select {
   text-align: center;
   appearance: none;
