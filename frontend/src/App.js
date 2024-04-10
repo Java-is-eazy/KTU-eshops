@@ -13,6 +13,7 @@ import Header from "./Components/Header";
 import ProductInfo from "./Components/ProductInfo";
 import ProductAdd from "./Components/ProductAddition";
 import UserProfile from "./Components/UserProfile";
+import Cart from "./Components/Cart";
 
 const App = () => {
   const [token, setToken] = useState("");
@@ -87,6 +88,15 @@ const App = () => {
             </>
           }
         />
+      <Route
+          path="/cart"
+          element={
+              <>
+                  <Header token={token} setToken={setToken} username={username} />
+                  <Cart />
+              </>
+          }
+      />
         <Route
           path="/404"
           element={

@@ -45,6 +45,13 @@ function Header({ token, setToken, username }) {
               My Profile
             </Link>
           </li>}
+          {token==="" ? null :
+              <li>
+                <Link to={`/cart`}>
+                  <img className={'shopping-bag-icon'} src={process.env.PUBLIC_URL + '/icons/shopping-bag.png'} alt="Cart"/>
+                </Link>
+              </li>
+          }
         </ul>
       </nav>
     </header>
