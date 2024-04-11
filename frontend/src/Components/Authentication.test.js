@@ -5,6 +5,7 @@ import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import * as ReactRouter from "react-router";
 import Authentication from "./Authentication";
+import { MemoryRouter } from "react-router-dom";
 
 jest.mock("react-router", () => {
   const originalModule = jest.requireActual("react-router");
@@ -15,41 +16,6 @@ jest.mock("react-router", () => {
 });
 
 describe("Authentication Component", () => {
-  it('should navigate to "/" after successful login', async () => {
-    ReactRouter.useNavigate.mockReturnValue(jest.fn());
-    window.alert = jest.fn();
-
-    global.fetch = jest.fn().mockResolvedValueOnce({
-      ok: true,
-      json: () => Promise.resolve({ token: "mocked-token" }),
-    });
-
-    const { getByTestId } = render(<Authentication setToken={() => {}} />);
-
-    fireEvent.change(getByTestId("loginUsername"), {
-      target: { value: "loginUsername" },
-    });
-    fireEvent.change(getByTestId("loginPassword"), {
-      target: { value: "loginUsername" },
-    });
-    fireEvent.click(getByTestId("loginBttn"));
-
-    await waitFor(() => {
-      expect(fetch).toHaveBeenCalledWith("http://localhost:3001/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: "loginUsername",
-          password: "loginUsername",
-        }),
-      });
-      expect(ReactRouter.useNavigate).toHaveBeenCalledWith();
-      expect(window.alert).toHaveBeenCalledWith("User logged in successfully");
-    });
-  });
-
   it("should throw an error if the user does not fill in all fields in signup", () => {
     window.alert = jest.fn();
 
@@ -168,5 +134,45 @@ describe("Authentication Component", () => {
     fireEvent.click(registerButton);
 
     expect(window.alert).toHaveBeenCalledWith("Passwords do not match");
+  });
+
+  it('should navigate to "/" after successful login', async () => {
+    const navigate = jest.fn();
+    const setToken = jest.fn();
+    const setUser = jest.fn();
+    ReactRouter.useNavigate.mockReturnValue(navigate);
+    window.alert = jest.fn();
+
+    global.fetch = jest.fn().mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve({ token: "mocked-token" }),
+    });
+
+    const { getByTestId } = render(
+      <Authentication setToken={() => {}} setUser={() => {}} />
+    );
+
+    fireEvent.change(getByTestId("loginUsername"), {
+      target: { value: "loginUsername" },
+    });
+    fireEvent.change(getByTestId("loginPassword"), {
+      target: { value: "loginUsername123!@#" },
+    });
+    fireEvent.click(getByTestId("loginBttn"));
+
+    await waitFor(() => {
+      expect(fetch).toHaveBeenCalledWith("http://localhost:3001/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: "loginUsername",
+          password: "loginUsername123!@#",
+        }),
+      });
+      expect(ReactRouter.useNavigate).toHaveBeenCalledWith();
+      expect(window.alert).toHaveBeenCalledWith("User logged in successfully");
+    });
   });
 });
