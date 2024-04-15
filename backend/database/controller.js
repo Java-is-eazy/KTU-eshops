@@ -3,7 +3,7 @@ const { connection } = require("../database/databaseSetup");
 const getItems = () => {
   return new Promise((resolve, reject) => {
     try {
-      connection.query("SELECT * FROM Items", (error, results) => {
+      connection.query("SELECT * FROM Products", (error, results) => {
         if (error) {
           throw Error(error);
         } else {
