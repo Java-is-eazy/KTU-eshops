@@ -41,13 +41,13 @@ const ProductAdd = ({ token }) => { // Renamed prop to 'token'
     return (
         <div className='add-container'>
             <h3 className="form-title">Sell your stuff!</h3>
-            <p>Item title</p>
+            <p class="productAddP">Item title</p>
             <input className='input' type="text" name="Title" />
-            <p>Price</p>
+            <p class="productAddP">Price</p>
             <input className='input' type="number" name="Price" />
-            <p>Description</p>
+            <p class="productAddP">Description</p>
             <input maxLength={200} className='input' type="text" name="Description" />
-            <p>Upload your images</p>
+            <p class="productAddP">Upload your images</p>
             {selectedFiles.length > 0 && (
                 <div className='display-img'>
                     {selectedFiles.map((file, index) => (
@@ -59,7 +59,7 @@ const ProductAdd = ({ token }) => { // Renamed prop to 'token'
             )}
             <label htmlFor="file-upload" className='custom-file-upload'>+</label>
             <input className="upload" id='file-upload' type="file" onChange={handleFileChange} accept=".jpg,.jpeg,.png" multiple />
-            <p>City</p>
+            <p class="productAddP">City</p>
             <input className='input' type="text" name="Image"/>
             <button className="submit-btn" onClick={handleUpload}>Add!</button>
         </div>

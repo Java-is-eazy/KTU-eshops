@@ -1,0 +1,62 @@
+.loading-container {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.user-not-found-container {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.user-profile-container {
+    padding-top: 5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-profile-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    background-color: #334155;
+    padding: 1rem;
+}
+
+.profile-picture {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+}
+
+.account-info {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.delete-account-button {
+    background-color: #FF0000;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    font-weight: bolder;
+    width: 70%;
+    margin-top: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .user-profile-content {
+        width: 80%;
+    }
+}

@@ -60,4 +60,24 @@ const getUserByUsername = (username) => {
   });
 };
 
-module.exports = { getItems, createUser, getUserByUsername };
+const deleteUser = (username) => {
+  return new Promise((resolve, reject) => {
+    try {
+      connection.query(
+        "DELETE FROM Users WHERE username = ?",
+        [username],
+        (error, results) => {
+          if (error) {
+            throw Error(error);
+          } else {
+            resolve(results);
+          }
+        }
+      );
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+module.exports = { getItems, createUser, getUserByUsername, deleteUser };

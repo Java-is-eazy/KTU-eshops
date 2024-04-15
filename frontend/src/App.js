@@ -4,7 +4,8 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import "./App.css";
 import ProductPage from "./Components/ProductPage";
 import Authentication from "./Components/Authentication";
@@ -15,12 +16,31 @@ import CheckoutPage from "./Components/checkout";
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CardDetailsForm from "./Components/cardDetails";
-
 const stripePromise = loadStripe('pk_test_51P2Cfs2LzASn7iwOCPkdqxaO2LbTRLJjpDCv0uY419KTMDcnBAejH2mYy51SmesDJNFjdajznygXlaBOFJykNCYA00Kte16mZH');
+import UserProfile from "./Components/UserProfile";
+import Cart from "./Components/Cart";
 
 const App = () => {
   const [token, setToken] = useState("");
   const [username, setUser] = useState("");
+
+  useEffect(() => {
+    const storedToken = Cookies.get("token");
+    const storedUsername = Cookies.get("username");
+    if (storedToken) setToken(storedToken);
+    if (storedUsername) setUser(storedUsername);
+  }, []);
+
+  useEffect(() => {
+    Cookies.set("token", token);
+    Cookies.set("username", username);
+  }, [token, username]);
+
+  function handleLogout() {
+    setToken("");
+    setUser("");
+  }
+
   return (
     <Router>
       <Routes>
@@ -28,7 +48,7 @@ const App = () => {
           path="/"
           element={
             <>
-              <Header token={token} setToken={setToken} />
+              <Header token={token} setToken={setToken} username={username} />
               <ProductPage />
             </>
           }
@@ -37,7 +57,7 @@ const App = () => {
           path="/login"
           element={
             <>
-              <Header token={token} setToken={setToken} />
+              <Header token={token} setToken={setToken} username={username} />
               <Authentication setToken={setToken} setUser={setUser} />
             </>
           }
@@ -46,8 +66,8 @@ const App = () => {
           path="/addyourproduct"
           element={
             <>
-              <Header token={token} setToken={setToken} />
-              <ProductAdd token={token} setToken={setToken}/>
+              <Header token={token} setToken={setToken} username={username} />
+              <ProductAdd token={token} setToken={setToken} />
             </>
           }
         />
@@ -61,7 +81,7 @@ const App = () => {
           }
         />
         <Route
-          path="/checkout/:productId"
+       path="/checkout/:productId"
           element={
             <Elements stripe={stripePromise}>
               <>
@@ -82,11 +102,33 @@ const App = () => {
             </Elements>
           }
         />
+          path="/userprofile/:username"
+          element={
+            <>
+              <Header token={token} setToken={setToken} username={username} />
+              <UserProfile
+                myUsername={username}
+                token={token}
+                handleLogout={handleLogout}
+              />
+            </>
+          }
+        />
+      <Route
+          path="/cart"
+          element={
+              <>
+                  <Header token={token} setToken={setToken} username={username} />
+                  <Cart />
+              </>
+          }
+      />
+
         <Route
           path="/404"
           element={
             <>
-              <Header token={token} setToken={setToken} />
+              <Header token={token} setToken={setToken} username={username} />
               <h1 style={{ textAlign: "center" }}>temporary not found page</h1>
             </>
           }
