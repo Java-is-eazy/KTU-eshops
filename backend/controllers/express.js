@@ -4,6 +4,8 @@ const {
   createUser,
   deleteUser,
 } = require("../database/controller");
+
+
 const { register, tryLogin } = require("../authentication/authentication");
 
 const path = require("path");
@@ -39,30 +41,27 @@ const setupExpress = (app) => {
       res.status(400).send(error.message);
     }
   });
-
   app.get("/items", async (req, res) => {
-    const filePath = path.join(__dirname, "../items-placeholder.json");
-    fs.readFile(filePath, (err, data) => {
-      if (err) {
-        res.status(500).send("Error reading the JSON file");
-        return;
-      }
-      const items = JSON.parse(data);
-
+    try {
+      const items = await getItems();
+  
       if (req.query.itemid) {
         const itemId = req.query.itemid;
         const item = items.find((item) => item.id.toString() === itemId);
-
+  
         if (!item) {
-          res.status(500).send("Item not found");
+          res.status(404).send("Item not found");
           return;
         }
-
+  
         res.json(item);
       } else {
         res.json(items);
       }
-    });
+    } catch (error) {
+      console.error("Error fetching items:", error);
+      res.status(500).send("Error fetching items");
+    }
   });
   app.get("/user", async (req, res) => {
     try {

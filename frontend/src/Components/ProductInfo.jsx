@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./ProductInfo.css";
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -57,6 +58,16 @@ const ProductInfo = ({addToCart}) => {
           </div>
           <div className="add-to-cart">
             <button className="buy" onClick={handleAddToCart}>Add to cart</button>
+          </div>
+          <div className="buy-now">
+          <Link
+                to={{
+                  pathname: `/checkout/${product.id}`,
+                }}
+                style={{ width: '50%' }}
+              >
+               <button className="buy">Buy</button>
+          </Link>
           </div>
         </div>
       </div>

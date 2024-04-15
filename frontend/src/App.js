@@ -12,8 +12,15 @@ import Authentication from "./Components/Authentication";
 import Header from "./Components/Header";
 import ProductInfo from "./Components/ProductInfo";
 import ProductAdd from "./Components/ProductAddition";
+import CheckoutPage from "./Components/checkout";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CardDetailsForm from "./Components/cardDetails";
 import UserProfile from "./Components/UserProfile";
 import Cart from "./Components/Cart";
+const stripePromise = loadStripe(
+  "pk_test_51P2Cfs2LzASn7iwOCPkdqxaO2LbTRLJjpDCv0uY419KTMDcnBAejH2mYy51SmesDJNFjdajznygXlaBOFJykNCYA00Kte16mZH"
+);
 
 const App = () => {
   const [token, setToken] = useState("");
@@ -76,6 +83,28 @@ const App = () => {
           }
         />
         <Route
+          path="/checkout/:productId"
+          element={
+            <Elements stripe={stripePromise}>
+              <>
+                <Header token={token} setToken={setToken} />
+                <CheckoutPage />
+              </>
+            </Elements>
+          }
+        />
+        <Route
+          path="/payment/:productId"
+          element={
+            <Elements stripe={stripePromise}>
+              <>
+                <Header token={token} setToken={setToken} />
+                <CardDetailsForm />
+              </>
+            </Elements>
+          }
+        />
+        <Route
           path="/userprofile/:username"
           element={
             <>
@@ -88,15 +117,16 @@ const App = () => {
             </>
           }
         />
-      <Route
+        <Route
           path="/cart"
           element={
-              <>
-                  <Header token={token} setToken={setToken} username={username} />
-                  <Cart />
-              </>
+            <>
+              <Header token={token} setToken={setToken} username={username} />
+              <Cart />
+            </>
           }
-      />
+        />
+
         <Route
           path="/404"
           element={
