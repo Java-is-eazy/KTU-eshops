@@ -4,10 +4,14 @@ import React from 'react';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import ProductPage from './ProductPage';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('ProductPage', () => {
   it('should filter items based on search query', async () => {
-    render(<ProductPage />);
+    render(
+    <BrowserRouter>
+    <ProductPage />
+    </BrowserRouter>);
 
     // Input the search query
     const searchInput = screen.getByPlaceholderText('Search for products');
@@ -26,7 +30,10 @@ describe('ProductPage', () => {
   });
 
   it('should filter items based on partial search query', async () => {
-    render(<ProductPage />);
+    render(
+      <BrowserRouter>
+      <ProductPage />
+      </BrowserRouter>);
 
     // Input a partial search query
     const searchInput = screen.getByPlaceholderText('Search for products');
@@ -45,7 +52,10 @@ describe('ProductPage', () => {
   });
 
   it('should filter items based on partial search query', async () => {
-    render(<ProductPage />);
+    render(
+      <BrowserRouter>
+      <ProductPage />
+      </BrowserRouter>);
     
     // Input a partial search query
     const searchInput = screen.getByPlaceholderText('Search for products');
