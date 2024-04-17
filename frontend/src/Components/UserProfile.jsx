@@ -8,13 +8,14 @@ export default function UserProfile({ myUsername, token, handleLogout }) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
+        console.log("Username:", username);
         fetch(`${window.location.protocol}//${window.location.hostname}:3001/user?username=${username}`)
         .then(async (response) => {
             if (response.ok) {
                 const userData = await response.json();
-            if (userData.created_at) {
-                userData.created_at = userData.created_at.slice(0, 10);
-            }
+                if (userData.created_at) {
+                    userData.created_at = userData.created_at.slice(0, 10);
+                }
                 setUser(userData);
             } else {
                 alert("Unable to fetch user data");
@@ -22,6 +23,7 @@ export default function UserProfile({ myUsername, token, handleLogout }) {
             setIsLoaded(true);
         });
     }, [username]);
+
     
 
     const handleDeleteAccount = () => {
@@ -33,7 +35,7 @@ export default function UserProfile({ myUsername, token, handleLogout }) {
                     'Content-Type': 'application/json',
                     'Authorization': `${token}`
                 },
-                body: JSON.stringify({ username: username })
+                body: JSON.stringify({ username: user.username })
             })
             .then(async (response) => {
                 if (response.ok) {
@@ -56,7 +58,7 @@ export default function UserProfile({ myUsername, token, handleLogout }) {
     return (
         <div className="user-profile-container">
             { !isLoaded && (
-                <div className="loading-container">Loading...</div>
+                <div data-testid="loading-message" className="loading-container">Loading...</div>
             )}
     
             { isLoaded && !user && (
@@ -65,15 +67,15 @@ export default function UserProfile({ myUsername, token, handleLogout }) {
     
             { isLoaded && user && (
                 <div className="user-profile-content">
-                    <h1>{`${username}`}</h1>
+                    <h1 data-testid="test-username">{user.username}</h1>
                     <img src="https://i.pinimg.com/originals/58/51/2e/58512eb4e598b5ea4e2414e3c115bef9.jpg" alt="profilePicture" className="profile-picture"/>
                     <div className="account-info">
                         <p>Account Created:</p>
-                        <p>{user.created_at}</p>
+                        <p data-testid="test-created-at">{user.created_at}</p>
                         <p>Email</p>
-                        <p>{user.email}</p>
-                        {username === myUsername && (
-                            <button onClick={handleDeleteAccount} className="delete-account-button">Delete Account</button>
+                        <p data-testid="test-email">{user.email}</p>
+                        {user.username === myUsername && (
+                            <button data-testid="test-delete" onClick={handleDeleteAccount} className="delete-account-button">Delete Account</button>
                         )}
                     </div>
                 </div>

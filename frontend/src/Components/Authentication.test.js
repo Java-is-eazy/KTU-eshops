@@ -5,7 +5,7 @@ import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import * as ReactRouter from "react-router";
 import Authentication from "./Authentication";
-import { MemoryRouter } from "react-router-dom";
+const { handleLogin } = require("./Authentication");
 
 jest.mock("react-router", () => {
   const originalModule = jest.requireActual("react-router");
@@ -134,6 +134,119 @@ describe("Authentication Component", () => {
     fireEvent.click(registerButton);
 
     expect(window.alert).toHaveBeenCalledWith("Passwords do not match");
+  });
+
+  //REGEX TESTS
+
+  it("should throw an error if the phone number is formated wrong", () => {
+    window.alert = jest.fn();
+
+    const { getByText, getByTestId } = render(<Authentication />);
+    const signupButton = getByText("Signup");
+    fireEvent.click(signupButton);
+    const username = getByTestId("signupUsername");
+    const password = getByTestId("signupPassword");
+    const confirmPassword = getByTestId("confirmPassword");
+    const email = getByTestId("signupEmail");
+    const phone = getByTestId("signupPhone");
+
+    fireEvent.change(username, { target: { value: "username" } });
+    fireEvent.change(password, { target: { value: "Password!15" } });
+    fireEvent.change(email, { target: { value: "test@test.test" } });
+    fireEvent.change(phone, { target: { value: "234578912" } });
+    fireEvent.change(confirmPassword, { target: { value: "Password!15" } });
+    const registerButton = getByTestId("signupBttn");
+    fireEvent.click(registerButton);
+
+    expect(window.alert).toHaveBeenCalledWith("Invalid phone number");
+  });
+  it("should throw an error if the email is formated wrong", () => {
+    window.alert = jest.fn();
+
+    const { getByText, getByTestId } = render(<Authentication />);
+    const signupButton = getByText("Signup");
+    fireEvent.click(signupButton);
+    const username = getByTestId("signupUsername");
+    const password = getByTestId("signupPassword");
+    const confirmPassword = getByTestId("confirmPassword");
+    const email = getByTestId("signupEmail");
+    const phone = getByTestId("signupPhone");
+
+    fireEvent.change(username, { target: { value: "username" } });
+    fireEvent.change(password, { target: { value: "Password!15" } });
+    fireEvent.change(email, { target: { value: "testtest.test" } });
+    fireEvent.change(phone, { target: { value: "+12345678912" } });
+    fireEvent.change(confirmPassword, { target: { value: "Password!15" } });
+    const registerButton = getByTestId("signupBttn");
+    fireEvent.click(registerButton);
+
+    expect(window.alert).toHaveBeenCalledWith("Invalid email");
+  });
+  it("should throw an error if the password does not contain uppercase letter", () => {
+    window.alert = jest.fn();
+
+    const { getByText, getByTestId } = render(<Authentication />);
+    const signupButton = getByText("Signup");
+    fireEvent.click(signupButton);
+    const username = getByTestId("signupUsername");
+    const password = getByTestId("signupPassword");
+    const confirmPassword = getByTestId("confirmPassword");
+    const email = getByTestId("signupEmail");
+    const phone = getByTestId("signupPhone");
+
+    fireEvent.change(username, { target: { value: "username" } });
+    fireEvent.change(password, { target: { value: "password!15" } });
+    fireEvent.change(email, { target: { value: "test@test.test" } });
+    fireEvent.change(phone, { target: { value: "+12345678912" } });
+    fireEvent.change(confirmPassword, { target: { value: "password!15" } });
+    const registerButton = getByTestId("signupBttn");
+    fireEvent.click(registerButton);
+
+    expect(window.alert).toHaveBeenCalledWith("Missing uppercase letters");
+  });
+  it("should throw an error if the password does not contain lowercase letter", () => {
+    window.alert = jest.fn();
+
+    const { getByText, getByTestId } = render(<Authentication />);
+    const signupButton = getByText("Signup");
+    fireEvent.click(signupButton);
+    const username = getByTestId("signupUsername");
+    const password = getByTestId("signupPassword");
+    const confirmPassword = getByTestId("confirmPassword");
+    const email = getByTestId("signupEmail");
+    const phone = getByTestId("signupPhone");
+
+    fireEvent.change(username, { target: { value: "username" } });
+    fireEvent.change(password, { target: { value: "PASSWORD!15" } });
+    fireEvent.change(email, { target: { value: "test@test.test" } });
+    fireEvent.change(phone, { target: { value: "+12345678912" } });
+    fireEvent.change(confirmPassword, { target: { value: "PASSWORD!15" } });
+    const registerButton = getByTestId("signupBttn");
+    fireEvent.click(registerButton);
+
+    expect(window.alert).toHaveBeenCalledWith("Missing lowercase letters");
+  });
+  it("should throw an error if the password is too short", () => {
+    window.alert = jest.fn();
+
+    const { getByText, getByTestId } = render(<Authentication />);
+    const signupButton = getByText("Signup");
+    fireEvent.click(signupButton);
+    const username = getByTestId("signupUsername");
+    const password = getByTestId("signupPassword");
+    const confirmPassword = getByTestId("confirmPassword");
+    const email = getByTestId("signupEmail");
+    const phone = getByTestId("signupPhone");
+
+    fireEvent.change(username, { target: { value: "username" } });
+    fireEvent.change(password, { target: { value: "pass" } });
+    fireEvent.change(email, { target: { value: "test@test.test" } });
+    fireEvent.change(phone, { target: { value: "+12345678912" } });
+    fireEvent.change(confirmPassword, { target: { value: "pass" } });
+    const registerButton = getByTestId("signupBttn");
+    fireEvent.click(registerButton);
+
+    expect(window.alert).toHaveBeenCalledWith("Password is too short");
   });
 
   it('should navigate to "/" after successful login', async () => {
