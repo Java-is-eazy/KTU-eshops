@@ -122,9 +122,13 @@ describe("UserProfile Component", () => {
         body: JSON.stringify({ username: "testUser" }),
       }
     );
+    window.alert = jest.fn();
 
     await waitFor(() => {
       expect(handleLogoutMock).toHaveBeenCalledTimes(1);
+    });
+    await waitFor(() => {
+      expect(window.alert).toHaveBeenCalledWith("Account deleted successfully");
     });
   });
 });
