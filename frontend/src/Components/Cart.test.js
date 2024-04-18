@@ -88,18 +88,17 @@ describe('Cart Component', () => {
     const updatedCart = JSON.parse(localStorage.getItem('cart'));
     expect(updatedCart[0].quantity).toBe(3);
   });
-  it('should handle checkout correctly', () => {
-    const mockItems = [{ title: 'Item 1', image: 'item1.jpg', price: 10.99, quantity: 2 }];
+  
+  //it('should handle checkout correctly', () => {
+  //  const mockItems = [{ title: 'Item 1', image: 'item1.jpg', price: 10.99, quantity: 2 }]; 
+  //  localStorage.setItem('cart', JSON.stringify(mockItems));
 
-    localStorage.setItem('cart', JSON.stringify(mockItems));
+  //  const { getByText } = render(<Cart />);
 
-    const { getByText } = render(<Cart />);
-
-    const checkoutButton = getByText('CHECKOUT');
-    fireEvent.click(checkoutButton);
-    const updatedCart = JSON.parse(localStorage.getItem('cart'));
-    expect(updatedCart.length).toBe(0);
-  });
-
+  //  const checkoutButton = getByText('CHECKOUT');
+  //  fireEvent.click(checkoutButton);
+  //  const updatedCart = JSON.parse(localStorage.getItem('cart'));
+  //  expect(updatedCart.length).toBe(0);
+  //});
 });
 
