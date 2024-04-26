@@ -80,4 +80,30 @@ const deleteUser = (username) => {
   });
 };
 
-module.exports = { getItems, createUser, getUserByUsername, deleteUser };
+const reportUser = (user_id, username, reason) => {
+  return new Promise((resolve, reject) => {
+    try {
+      connection.query(
+        "INSERT INTO `user_reports` (sender, complaint, receiver) VALUES (? , ? , ?)",
+        [user_id, reason, username],
+        (error, results) => {
+          if (error) {
+            throw Error(error);
+          } else {
+            resolve(results);
+          }
+        }
+      );
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+module.exports = {
+  getItems,
+  createUser,
+  getUserByUsername,
+  deleteUser,
+  reportUser,
+};

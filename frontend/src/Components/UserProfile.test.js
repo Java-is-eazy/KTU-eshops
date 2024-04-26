@@ -1,5 +1,7 @@
+/* eslint-disable testing-library/prefer-screen-queries */
+/* eslint-disable testing-library/no-wait-for-multiple-assertions */
 import React, { useState } from "react";
-import { render, waitFor, fireEvent, debug } from "@testing-library/react";
+import { render, waitFor, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import UserProfile from "./UserProfile";
 
@@ -92,7 +94,7 @@ describe("UserProfile Component", () => {
     // Mock window.confirm
     window.confirm = jest.fn().mockImplementation(() => true);
 
-    const { getByTestId, queryByTestId } = render(
+    const { getByTestId } = render(
       <UserProfile
         myUsername="testUser"
         token="yourAuthToken"
