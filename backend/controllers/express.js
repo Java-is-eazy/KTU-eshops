@@ -4,6 +4,7 @@ const {
   createUser,
   deleteUser,
   reportUser,
+  createItem,
 } = require("../database/controller");
 
 const { register, tryLogin } = require("../authentication/authentication");
@@ -137,6 +138,25 @@ const setupExpress = (app) => {
       res.status(200).send("User reported successfully");
     } catch (error) {
       res.status(500).send("Internal server error while reporting a user");
+    }
+  });
+
+  app.post("/items", async (req, res) => {
+    try {
+      const decodedToken = verifyToken(req.headers.authorization);
+      if (decodedToken === false) {
+        res.status(403).send("Unauthorized");
+        return;
+      }
+      const { title, price, description, city, image } = req.body;
+      if (!title || !price || !description || !city || !image) {
+        res.status(400).send("Please fill in all fields");
+        return;
+      }
+      await createItem(decodedToken.id, title, price, description, image);
+      res.status(200).send("Item added successfully");
+    } catch (error) {
+      res.status(500).send("Internal server error while adding an item");
     }
   });
 };

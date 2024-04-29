@@ -100,10 +100,31 @@ const reportUser = (user_id, username, reason) => {
   });
 };
 
+const createItem = (user_id, title, price, description, image) => {
+  return new Promise((resolve, reject) => {
+    try {
+      connection.query(
+        "INSERT INTO `Products` (user_id, title, description, price, image, category) VALUES (?, ?, ?, ?, ?, 'Other')",
+        [user_id, title, description, price, image],
+        (error, results) => {
+          if (error) {
+            throw Error(error);
+          } else {
+            resolve(results);
+          }
+        }
+      );
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 module.exports = {
   getItems,
   createUser,
   getUserByUsername,
   deleteUser,
   reportUser,
+  createItem,
 };
