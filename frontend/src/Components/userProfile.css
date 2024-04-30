@@ -48,10 +48,17 @@
 
 .delete-account-button {
     background-color: #FF0000;
-    padding: 0.5rem;
+    padding: 1rem;
     border-radius: 1rem;
     font-weight: bolder;
-    width: 70%;
+    margin-top: 1rem;
+}
+
+.report-account-button {
+    background-color: #ffbb00;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-weight: bolder;
     margin-top: 1rem;
 }
 

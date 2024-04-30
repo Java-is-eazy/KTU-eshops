@@ -3,8 +3,9 @@ const {
   getUserByUsername,
   createUser,
   deleteUser,
+  reportUser,
+  createItem,
 } = require("../database/controller");
-
 
 const { register, tryLogin } = require("../authentication/authentication");
 
@@ -44,16 +45,16 @@ const setupExpress = (app) => {
   app.get("/items", async (req, res) => {
     try {
       const items = await getItems();
-  
+
       if (req.query.itemid) {
         const itemId = req.query.itemid;
         const item = items.find((item) => item.id.toString() === itemId);
-  
+
         if (!item) {
           res.status(404).send("Item not found");
           return;
         }
-  
+
         res.json(item);
       } else {
         res.json(items);
@@ -108,6 +109,54 @@ const setupExpress = (app) => {
       }
     } catch (error) {
       res.status(500).send(error.message);
+    }
+  });
+
+  app.post("/report", async (req, res) => {
+    try {
+      const { username } = req.body;
+      if (!username) {
+        res.status(400).send("Please provide a username");
+        return;
+      }
+      const user = await getUserByUsername(username);
+      if (!user) {
+        res.status(404).send("User not found");
+        return;
+      }
+      const decodedToken = verifyToken(req.headers.authorization);
+      if (decodedToken === false) {
+        res.status(403).send("Unauthorized");
+        return;
+      }
+      const { reason } = req.body;
+      if (!reason) {
+        res.status(400).send("Please provide a reason");
+        return;
+      }
+      await reportUser(decodedToken.id, user.id, reason);
+      res.status(200).send("User reported successfully");
+    } catch (error) {
+      res.status(500).send("Internal server error while reporting a user");
+    }
+  });
+
+  app.post("/items", async (req, res) => {
+    try {
+      const decodedToken = verifyToken(req.headers.authorization);
+      if (decodedToken === false) {
+        res.status(403).send("Unauthorized");
+        return;
+      }
+      const { title, price, description, city, image } = req.body;
+      if (!title || !price || !description || !city || !image) {
+        res.status(400).send("Please fill in all fields");
+        return;
+      }
+      await createItem(decodedToken.id, title, price, description, image);
+      res.status(200).send("Item added successfully");
+    } catch (error) {
+      res.status(500).send("Internal server error while adding an item");
     }
   });
 };
