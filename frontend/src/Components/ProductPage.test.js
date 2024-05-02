@@ -22,7 +22,7 @@ describe('ProductPage', () => {
 
     // Wait for items to be filtered
     await waitFor(() => {
-      expect(screen.queryByText('No items found')).toBeInTheDocument();
+      expect(screen.getByText('No items found')).toBeInTheDocument();
     });
 
     // Ensure the "No items found" message is displayed
@@ -44,14 +44,14 @@ describe('ProductPage', () => {
 
     // Wait for items to be filtered
     await waitFor(() => {
-      expect(screen.queryByText('No items found')).toBeInTheDocument();
+      expect(screen.getByText('No items found')).toBeInTheDocument();
     });
 
     // Ensure the "No items found" message is displayed
     expect(screen.queryAllByTestId('item-card')).toHaveLength(0);
   });
 
-  it('should filter items based on partial search query', async () => {
+  it('should filter items based on brush search query', async () => {
     render(
       <BrowserRouter>
       <ProductPage />
