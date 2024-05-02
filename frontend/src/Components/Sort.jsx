@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./sort.css";
 
+import PropTypes from 'prop-types';
+
 export default function Sort({ jsonData, onDataSort }) {
     const [sortBy, setSortBy] = useState('alphabetically');
 
@@ -40,3 +42,10 @@ export default function Sort({ jsonData, onDataSort }) {
         </select>
     );
 }
+
+Sort.propTypes = {
+    jsonData: PropTypes.func.isRequired,
+    onDataSort: PropTypes.func.isRequired,
+  };
+  
+  
