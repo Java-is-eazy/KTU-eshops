@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./ProductAdd.css";
+import PropTypes from 'prop-types';
+
 
 const ProductAdd = ({ token }) => {
     const [selectedFiles, setSelectedFiles] = useState([]);
@@ -90,7 +92,9 @@ const ProductAdd = ({ token }) => {
             <button className="submit-btn" onClick={postProduct}>Add!</button>
         </div>
     );
-
 }
 
+ProductAdd.propTypes = {
+    token: PropTypes.string.isRequired
+};
 export default ProductAdd;

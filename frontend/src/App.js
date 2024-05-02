@@ -4,7 +4,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, React } from "react";
 import Cookies from "js-cookie";
 import "./App.css";
 import ProductPage from "./Components/ProductPage";

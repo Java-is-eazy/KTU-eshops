@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ProductInfo.css";
 import { useParams, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 const API_URL = `${window.location.protocol}//${window.location.hostname}:3001/items`;
 
@@ -80,6 +82,10 @@ const ProductInfo = ({addToCart}) => {
       </div>
     </div>
   );
+};
+
+ProductInfo.propTypes = {
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductInfo;
