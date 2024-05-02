@@ -47,11 +47,12 @@
 }
 
 .delete-account-button {
-    background-color: #FF0000;
+    background-color: red;
     padding: 1rem;
     border-radius: 1rem;
     font-weight: bolder;
     margin-top: 1rem;
+    color: white;
 }
 
 .report-account-button {

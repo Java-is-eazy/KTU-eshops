@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 export default function UserProfile({ myUsername, token, handleLogout }) {
     const { username } = useParams();
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
