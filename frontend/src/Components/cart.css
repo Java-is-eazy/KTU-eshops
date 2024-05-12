@@ -1,8 +1,15 @@
 .custom-container {
-    margin: 100px;
+    margin: 20px;
+    margin-top: 7rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.submit-btn {
+    width: auto;
+    padding: 20px 40px 20px 40px;
+    font-size: 20px;
 }
 
 .header {
@@ -26,6 +33,14 @@
     gap: 20px;
 }
 
+.checkout-items {
+    color: white;
+}
+
+h3 {
+    color: white;
+}
+
 .cart-item {
     display: flex;
     align-items: center;
@@ -46,6 +61,13 @@
     flex: 1;
 }
 
+.count-input {
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
 .item-info-count .count-input{
     width: 20%;
 }
@@ -54,58 +76,11 @@
     width: 100%;
     text-align: center;
 }
-.checkout-btn {
-    background: #e6a605;
-    background-image: -webkit-linear-gradient(top, #e6a605, #b09b30);
-    background-image: -moz-linear-gradient(top, #e6a605, #b09b30);
-    background-image: -ms-linear-gradient(top, #e6a605, #b09b30);
-    background-image: -o-linear-gradient(top, #e6a605, #b09b30);
-    background-image: linear-gradient(to bottom, #e6a605, #b09b30);
-    -webkit-border-radius: 28;
-    -moz-border-radius: 28;
-    border-radius: 28px;
-    text-shadow: 1px 1px 3px #666666;
-    font-family: Courier New;
-    color: #ffffff;
-    font-size: 20px;
-    padding: 10px 20px 10px 20px;
-    text-decoration: none;
-}
-
-.checkout-btn:hover {
-    background: #cc00ff;
-    background-image: -webkit-linear-gradient(top, #cc00ff, #3498db);
-    background-image: -moz-linear-gradient(top, #cc00ff, #3498db);
-    background-image: -ms-linear-gradient(top, #cc00ff, #3498db);
-    background-image: -o-linear-gradient(top, #cc00ff, #3498db);
-    background-image: linear-gradient(to bottom, #cc00ff, #3498db);
-    text-decoration: none;
-}
 
 .checkout-container{
-    margin: 20px;
+    margin-top: 7rem;
 }
 
-.clear-cart-btn {
-    text-align: center;
-    font-size:15px;
-    font-family:Courier New;
-    width:140px;
-    height:50px;
-    border-width:1px;
-    color:#666666;
-    border-color:#dcdcdc;
-    font-weight:bold;
-    border-top-left-radius:6px;
-    border-top-right-radius:6px;
-    border-bottom-left-radius:6px;
-    border-bottom-right-radius:6px;
-    box-shadow:inset 0px 1px 0px 0px #ffffff;
-    text-shadow:inset 0px 1px 0px #ffffff;
-    background:linear-gradient(#f9f9f9, #e9e9e9);
+.item-list-checkout {
+    margin-bottom: 2rem;
 }
-
-.clear-cart-btn:hover {
-    background: linear-gradient(#e9e9e9, #f9f9f9);
-}
-
