@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./ProductInfo.css";
 import { useParams, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import UserPic from '../assets/user-pic.png';
 
 
 const API_URL = `${window.location.protocol}//${window.location.hostname}:3001/items`;
@@ -60,25 +61,23 @@ const ProductInfo = ({addToCart}) => {
           </div>
           <div className="add-to-cart">
             <button className="buy" onClick={handleAddToCart}>Add to cart</button>
-          </div>
-          <div className="buy-now">
-          <Link
+            <Link
                 to={{
                   pathname: `/checkout/${product.id}`,
                 }}
-                style={{ width: '50%' }}
               >
                <button className="buy">Buy</button>
-          </Link>
+            </Link>
           </div>
         </div>
       </div>
       <div className="seller">
-        <img src={product.sellerimg} alt={product.title} className="seller-img"/>
-        <p className="seller-name">{product.seller}</p>
+        <img src={UserPic} alt={product.title} className="seller-img"/>
+        <p className="seller-name">Seller</p>
       </div>
       <div className="description">
-      <p>Description: {product.description}</p>
+          <p>Description:</p>
+          <p>{product.description}</p>
       </div>
     </div>
   );

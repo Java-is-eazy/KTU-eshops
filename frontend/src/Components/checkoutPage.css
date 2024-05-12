@@ -6,7 +6,7 @@
     background-color: #334155;
     width: 50%;
     margin: 0 auto;
-    margin-top: 3rem; /* Add margin at the top */
+    margin-top: 7rem; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
   }
   
@@ -48,3 +48,8 @@
     background-color: #e6b800;
   }
   
+  @media screen and (max-width:1000px){
+    .checkout-container {
+        width: 90%;
+    }
+}

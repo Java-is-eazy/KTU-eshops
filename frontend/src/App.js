@@ -94,6 +94,17 @@ const App = () => {
           }
         />
         <Route
+          path="/checkout"
+          element={
+            <Elements stripe={stripePromise}>
+              <>
+                <Header token={token} setToken={setToken} />
+                <CheckoutPage />
+              </>
+            </Elements>
+          }
+        />
+        <Route
           path="/payment/:productId"
           element={
             <Elements stripe={stripePromise}>
