@@ -5,13 +5,25 @@ const {
   deleteUser,
   reportUser,
   createItem,
+  getUserByEmail,
+  changePassword,
+  createPasswordRecoveryRequest,
 } = require("../database/controller");
 
-const { register, tryLogin } = require("../authentication/authentication");
+const { sendEmail } = require("../mail/mailer");
+
+const {
+  register,
+  tryLogin,
+  generateRandomString,
+} = require("../authentication/authentication");
+const { hashPassword } = require("../authentication/hashing");
 
 const path = require("path");
 const fs = require("fs");
 const { verifyToken } = require("../authentication/token");
+const e = require("express");
+const { get } = require("http");
 
 const setupExpress = (app) => {
   app.post("/login", async (req, res) => {
@@ -157,6 +169,37 @@ const setupExpress = (app) => {
       res.status(200).send("Item added successfully");
     } catch (error) {
       res.status(500).send("Internal server error while adding an item");
+    }
+  });
+
+  app.post("/passwordrecovery", async (req, res) => {
+    try {
+      const { email } = req.body;
+      const user = await getUserByEmail(email);
+      const string = await generateRandomString(32);
+      createPasswordRecoveryRequest(user.id, string);
+
+      sendEmail(email, "http://localhost:3000/recoverpassword/" + string);
+      res.status(200).send("Email sent successfully");
+    } catch (error) {
+      res.status(500).send("Internal server error");
+      console.log(error);
+    }
+  });
+
+  app.post("/recover", async (req, res) => {
+    const { email, password, string } = req.body;
+    if (!email || !password || !string) {
+      res.status(400).send("Please fill in all fields");
+      return;
+    }
+    try {
+      const user = await getUserByEmail(email);
+      const hashedPassword = hashPassword(user.username, password);
+      changePassword(string, email, hashedPassword);
+      res.status(200).send("Password changed successfully");
+    } catch (error) {
+      res.status(500).send("Internal server error");
     }
   });
 };

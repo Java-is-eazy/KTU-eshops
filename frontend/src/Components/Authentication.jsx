@@ -13,6 +13,7 @@ const Authentication = ({ setToken, setUser }) => {
     const handleSignupClick = () => {
         setIsLogin(false);
     };
+    const [showModal, setShowModal] = useState(false); 
 
     const isValidPhoneNumber = (phoneNumber) => {
       const phoneRegex = /^\+\d{11}$/;
@@ -77,6 +78,40 @@ const Authentication = ({ setToken, setUser }) => {
       }
     };
 
+    const handleSendRequest = (e) => {
+      e.preventDefault();
+      try {
+        const email = document.getElementById('email').value;
+        if (email === '') {
+            throw new Error('Please fill in all fields');
+        }
+        isValidEmail(email);
+        fetch(`${window.location.protocol}//${window.location.hostname}:3001/passwordrecovery`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        })
+          .then(async (response) => {
+            if (!response.ok) {
+              alert(await response.text());
+            }
+            else{
+              alert('Password recovery email sent successfully');
+              setShowModal(false);
+            }
+          });
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+    const handleForgotPassword = () => {
+      setShowModal(true);
+    }
+    
+
     const handleRegister = () => {
       try {
         const username = document.getElementById('signupUsername').value;
@@ -117,7 +152,7 @@ const Authentication = ({ setToken, setUser }) => {
 
 return (
     <div className="full-height" style={{backgroundImage: `url(${backgroundImage})`, backgroundSize:'cover', backgroundPosition: 'bottom right'}}>
-      <div className="auth-container">
+      <div className={`auth-container ${showModal && "full-window-modal"}`}>
         <h1>ProductForge</h1>
         <div className="buttons-container">
           <div className={`slider ${isLogin ? 'left' : 'right'}`}></div>
@@ -131,7 +166,7 @@ return (
             <input className='input' type="text" name="username" id="loginUsername" data-testid="loginUsername"/>
             <p>Password</p>
             <input className='input' type="password" name="password" id="loginPassword" data-testid="loginPassword"/>
-            <p className="forgot-password">Forgot Password?</p>
+            <p className="forgot-password" onClick={handleForgotPassword}>Forgot Password?</p>
             <button className="submit-btn" onClick={handleLogin} data-testid="loginBttn">Login</button>
           </div>
         ) : (
@@ -151,6 +186,19 @@ return (
           </div>
         )}
       </div>
+      {showModal && (
+        <div className="modal-recovery">
+        <div className="modal-content">
+          <span style={{color:"white", float:"left"}} onClick={() => setShowModal(false)}>&times;</span>
+          <h1 style={{color:"white"}}>ProductForge password recovery</h1>
+          <form>
+            <p className='modal-label'>Email address of the account</p>
+            <input className='input' type="email" id="email" name="email" required />
+            <button type="submit" onClick={handleSendRequest} className='submit-btn'>Recover Password</button>
+          </form>
+        </div>
+      </div>
+      )}  
     </div>
     );
 };
