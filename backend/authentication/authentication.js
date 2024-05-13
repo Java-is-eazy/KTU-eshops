@@ -1,6 +1,7 @@
 const { hashPassword } = require("./hashing");
 const { getUserByUsername, createUser } = require("../database/controller");
 const { generateToken } = require("./token");
+const crypto = require("crypto");
 
 const tryLogin = async (username, password) => {
   try {
@@ -45,4 +46,9 @@ const register = async (username, password, email, phone) => {
   }
 };
 
-module.exports = { tryLogin, register };
+const generateRandomString = (length) => {
+  const buffer = crypto.randomBytes(Math.ceil(length / 2));
+  return buffer.toString("hex").slice(0, length);
+};
+
+module.exports = { tryLogin, register, generateRandomString };

@@ -18,6 +18,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import CardDetailsForm from "./Components/cardDetails";
 import UserProfile from "./Components/UserProfile";
 import Cart from "./Components/Cart";
+import RecoverPassword from "./Components/PasswordRecovery";
 const stripePromise = loadStripe(
   "pk_test_51P2Cfs2LzASn7iwOCPkdqxaO2LbTRLJjpDCv0uY419KTMDcnBAejH2mYy51SmesDJNFjdajznygXlaBOFJykNCYA00Kte16mZH"
 );
@@ -123,6 +124,14 @@ const App = () => {
             <>
               <Header token={token} setToken={setToken} username={username} />
               <Cart />
+            </>
+          }
+        />
+        <Route
+          path="/recoverpassword/:string"
+          element={
+            <>
+              <RecoverPassword />
             </>
           }
         />

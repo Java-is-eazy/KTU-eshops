@@ -149,6 +149,37 @@
     align-items: center;
 }
 
+.modal-recovery{
+  background-color: #334155;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  border-color: #000;
+  border-width: 1px;
+  position: fixed;
+  z-index: 1;
+  left: 30%;
+}
+.modal-label{
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+.full-window-modal{
+  filter: blur(4px);
+}
+
+.recover-pass-form{
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  color: #ffffff;
+  margin: 10%;
+  align-items: center;
+  background-color: inherit;
+}
+
+
 @media screen and (max-width: 1100px){
     .full-height {
         justify-content: center;

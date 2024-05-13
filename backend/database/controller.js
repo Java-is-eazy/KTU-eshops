@@ -120,6 +120,79 @@ const createItem = (user_id, title, price, description, image) => {
   });
 };
 
+const getUserByEmail = (email) => {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      "SELECT * FROM Users WHERE email = ?",
+      [email],
+      (error, results) => {
+        try {
+          if (error) {
+            throw error;
+          } else {
+            if (results.length > 0) {
+              resolve(results[0]);
+            } else {
+              resolve(null);
+            }
+          }
+        } catch (error) {
+          reject(error);
+        }
+      }
+    );
+  });
+};
+
+const createPasswordRecoveryRequest = (userid, string) => {
+  return new Promise((resolve, reject) => {
+    try {
+      connection.query(
+        "INSERT INTO password_recovery (userid, string_column) VALUES (?, ?)",
+        [userid, string],
+        (error, results) => {
+          if (error) {
+            throw Error(error);
+          } else {
+            resolve(results);
+          }
+        }
+      );
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+const changePassword = (string, email, newPassword) => {
+  return new Promise((resolve, reject) => {
+    try {
+      connection.query(
+        "UPDATE password_recovery pr " +
+          "INNER JOIN Users u ON pr.userid = u.id " +
+          "SET pr.status = FALSE, u.password = ? " +
+          "WHERE pr.string_column = ? AND u.email = ?",
+        [newPassword, string, email],
+        (error, results) => {
+          if (error) {
+            reject(error);
+          } else if (results.affectedRows === 0) {
+            resolve({
+              message: "Unable to find the password recovery for this account",
+            });
+          } else {
+            resolve({
+              message: "Password updated successfully",
+            });
+          }
+        }
+      );
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 module.exports = {
   getItems,
   createUser,
@@ -127,4 +200,8 @@ module.exports = {
   deleteUser,
   reportUser,
   createItem,
+  createPasswordRecoveryRequest,
+  changePassword,
+  getUserByEmail,
+  changePassword,
 };
