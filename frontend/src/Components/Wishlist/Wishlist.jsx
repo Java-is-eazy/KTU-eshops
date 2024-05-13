@@ -5,15 +5,16 @@ function Wishlist() {
     const [wishlist, setWishlist] = useState([]);
 
     useEffect(() => {
-        let wishList = JSON.parse(localStorage.getItem('wishList'));
-        console.log(wishList);
-        setWishlist(wishList);
-    }, [wishlist]);
+        let storedWishlist = JSON.parse(localStorage.getItem('wishList'));
+        if (storedWishlist) {
+            setWishlist(storedWishlist);
+        }
+    }, []);
 
     const handleWishListClear = () => {
         localStorage.removeItem('wishList');
         setWishlist([]);
-    }
+    };
     return (
         <>
             {

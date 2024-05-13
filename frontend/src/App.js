@@ -85,7 +85,7 @@ const App = () => {
           }
         />
         <Route
-          path="/checkout"
+          path="/checkout/:productId"
           element={
             <Elements stripe={stripePromise}>
               <>
@@ -107,7 +107,7 @@ const App = () => {
           }
         />
         <Route
-          path="/payment"
+          path="/payment/:productId"
           element={
             <Elements stripe={stripePromise}>
               <>

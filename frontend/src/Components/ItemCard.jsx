@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import "./ItemCard.css";
 import PropTypes from 'prop-types';
@@ -7,17 +7,28 @@ import PropTypes from 'prop-types';
 const ItemCard = ({ item }) => {
   const [isWished, setIsWished] = useState(false);
 
-  const handleWishClick = () => {
-    setIsWished(prevIsWished => !prevIsWished);
+    useEffect(() => {
+        const wishList = JSON.parse(localStorage.getItem('wishList')) || [];
+        const isAlreadyInWishlist = wishList.some(wishItem => wishItem.id === item.id);
+        setIsWished(isAlreadyInWishlist);
+    }, [item.id]);
 
-    let wishList = JSON.parse(localStorage.getItem('wishList')) || [];
+    const handleWishClick = () => {
+        const wishList = JSON.parse(localStorage.getItem('wishList')) || [];
+        const isAlreadyInWishlist = wishList.some(wishItem => wishItem.id === item.id);
 
-    wishList.push(item);
-
-    localStorage.setItem('wishList', JSON.stringify(wishList));
-
-    console.log("Item added: ", item);
-  }
+        if (!isAlreadyInWishlist) {
+            wishList.push(item);
+            localStorage.setItem('wishList', JSON.stringify(wishList));
+            setIsWished(true);
+            console.log("Item added: ", item);
+        } else {
+            const updatedWishlist = wishList.filter(wishItem => wishItem.id !== item.id);
+            localStorage.setItem('wishList', JSON.stringify(updatedWishlist));
+            setIsWished(false);
+            console.log("Item removed: ", item);
+        }
+    }
 
   return (
       <div className={`card ${item.promoted ? 'promoted' : ''}`}>
