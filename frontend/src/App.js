@@ -19,6 +19,7 @@ import CardDetailsForm from "./Components/cardDetails";
 import UserProfile from "./Components/UserProfile";
 import Cart from "./Components/Cart";
 import RecoverPassword from "./Components/PasswordRecovery";
+import Wishlist from "./Components/Wishlist/Wishlist";
 const stripePromise = loadStripe(
   "pk_test_51P2Cfs2LzASn7iwOCPkdqxaO2LbTRLJjpDCv0uY419KTMDcnBAejH2mYy51SmesDJNFjdajznygXlaBOFJykNCYA00Kte16mZH"
 );
@@ -129,6 +130,15 @@ const App = () => {
             </>
           }
         />
+          <Route
+              path="/wishlist/:username"
+              element={
+                  <>
+                      <Header token={token} setToken={setToken} username={username} />
+                      <Wishlist/>
+                  </>
+              }
+          />
         <Route
           path="/cart"
           element={

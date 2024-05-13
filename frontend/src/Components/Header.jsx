@@ -49,6 +49,12 @@ function Header({ token, setToken, username }) {
           </li>}
           {token==="" ? null :
               <li>
+                <Link to={`/wishlist/${username}`}>
+                  Wishlist
+                </Link>
+              </li>}
+          {token==="" ? null :
+              <li>
                 <Link to={`/cart`}>
                   <img className={'shopping-bag-icon'} src={process.env.PUBLIC_URL + '/icons/shopping-bag.png'} alt="Cart"/>
                 </Link>
