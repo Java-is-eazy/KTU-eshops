@@ -1,5 +1,7 @@
 import React from 'react';
 import './paymentMethod.css';
+import PropTypes from 'prop-types';
+ 
 
 const PaymentMethodOption = ({ onSelectPaymentMethod }) => {
   return (
@@ -12,5 +14,11 @@ const PaymentMethodOption = ({ onSelectPaymentMethod }) => {
     </div>
   );
 };
+
+
+PaymentMethodOption.propTypes = {
+  onSelectPaymentMethod: PropTypes.func.isRequired,
+};
+
 
 export default PaymentMethodOption;

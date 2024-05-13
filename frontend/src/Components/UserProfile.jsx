@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, React } from 'react';
 import './userProfile.css';
+import PropTypes from 'prop-types';
+
 
 export default function UserProfile({ myUsername, token, handleLogout }) {
     const { username } = useParams();
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -107,5 +109,10 @@ export default function UserProfile({ myUsername, token, handleLogout }) {
             )}
         </div>
     );
-
 }
+
+UserProfile.propTypes = {
+    myUsername: PropTypes.string.isRequired,
+    token: PropTypes.string.isRequired,
+    handleLogout: PropTypes.func.isRequired
+};

@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import './checkoutPage.css';
-import { useNavigate, useParams } from 'react-router-dom';
-import PaymentMethodOption from './paymentMethod'; 
+import { useNavigate, useLocation } from 'react-router-dom';
+import PaymentMethodOption from './paymentMethod';
 
 const CheckoutPage = () => {
-  const { productId } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+
+  const queryParams = new URLSearchParams(location.search);
+  const cartItems = JSON.parse(decodeURIComponent(queryParams.get('items')));
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -13,11 +19,9 @@ const CheckoutPage = () => {
     postalCode: ''
   });
 
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null); 
-  const [showPaymentMethodOption, setShowPaymentMethodOption] = useState(false); 
-  const navigate = useNavigate();
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+  const [showPaymentMethodOption, setShowPaymentMethodOption] = useState(false);
 
-  // Function to handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -26,26 +30,22 @@ const CheckoutPage = () => {
     });
   };
 
-  // Function to handle payment method selection
   const handlePaymentMethodSelect = (method) => {
     setSelectedPaymentMethod(method);
     setShowPaymentMethodOption(false);
 
-    // Redirect to payment page
-    navigate(`/payment/${productId}`, { state: { formData: formData } });
+    navigate(`/payment`, { state: { formData: formData, cartItems: cartItems } });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const isEmpty = Object.values(formData).some(field => !field);
-  
+
     if (isEmpty) {
       const errorMessageElement = document.getElementById('errorMessage');
       errorMessageElement.textContent = 'Please fill in all required fields!';
-      return; 
-    } 
-
-    // Show payment method options
+      return;
+    }
     setShowPaymentMethodOption(true);
   };
 
@@ -68,7 +68,20 @@ const CheckoutPage = () => {
         <label htmlFor="postalCode">Postal Code:</label>
         <input type="text" id="postalCode" name="postalCode" value={formData.postalCode} onChange={handleChange} required />
 
-        <button className="checkout-button" type="submit">Payment</button>
+        <div className="item-list-checkout">
+          <h3>Items:</h3>
+          {cartItems && cartItems.length > 0 ? (
+            cartItems.map((item, index) => (
+              <div key={index}>
+                <p>{item.title} Quantity: {item.quantity} Price: {item.price} €</p>
+              </div>
+            ))
+          ) : (
+            <p>No items in the cart</p>
+          )}
+        </div>
+
+        <button className="submit-btn" type="submit">Payment</button>
         <div id="errorMessage"></div>
         {showPaymentMethodOption && (
           <PaymentMethodOption onSelectPaymentMethod={handlePaymentMethodSelect} />
