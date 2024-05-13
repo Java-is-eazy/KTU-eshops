@@ -11,7 +11,7 @@ const CardDetailsForm = () => {
   const [error, setError] = useState(null);
   const {productId} = useParams();
   const location = useLocation();
-  const formData = location.state && location.state.formData;
+  const { formData, cartItems } = location.state || {};
 
   const handleSubmitPayment = async (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ const CardDetailsForm = () => {
       try {
         const response = await axios.post(
           'http://localhost:3001/api/checkout/create-payment-intent',
-          { paymentMethod: paymentMethod, productId: productId }
+          { paymentMethod: paymentMethod, productIds: cartItems.map(item => item.id),formData:formData}
         );
     
         const { error, paymentIntent } = await stripe.confirmCardPayment(response.data.clientSecret, {
