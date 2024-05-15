@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./ProductAdd.css";
@@ -62,8 +63,7 @@ const ProductAdd = ({ token }) => {
             <button className="submit-btn add-btn" onClick={postProduct}>Add!</button>
         </div>
     );
-}
-
+};
 ProductAdd.propTypes = {
     token: PropTypes.string.isRequired
 };

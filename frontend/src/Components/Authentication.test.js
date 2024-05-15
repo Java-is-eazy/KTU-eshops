@@ -1,5 +1,4 @@
-/* eslint-disable testing-library/no-wait-for-multiple-assertions */
-/* eslint-disable testing-library/prefer-screen-queries */
+/* eslint-disable no-undef */
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
@@ -259,7 +258,7 @@ describe("Authentication Component", () => {
     });
 
     const { getByTestId } = render(
-      <Authentication setToken={() => {}} setUser={() => {}} />
+        <Authentication setToken={() => {}} setUser={() => {}} />
     );
 
     fireEvent.change(getByTestId("loginUsername"), {

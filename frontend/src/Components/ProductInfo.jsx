@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ProductInfo.css";
@@ -51,35 +52,35 @@ const ProductInfo = ({addToCart}) => {
   }
 
   return (
-    <div>
-      <div className="info">
-          <img src={product.image} alt={product.title} className="picture"/>
-        <div className="info-right">
-          <div className="prod-info">
-            <h1>{product.title}</h1>
-            <p className="price">{product.price} €</p>
-          </div>
-          <div className="add-to-cart">
-            <button className="buy" onClick={handleAddToCart}>Add to cart</button>
-            <Link
-                to={{
+      <div>
+          <div className="info">
+              <img src={product.image} alt={product.title} className="picture"/>
+              <div className="info-right">
+                  <div className="prod-info">
+                      <h1>{product.title}</h1>
+                      <p className="price">{product.price} €</p>
+                  </div>
+                  <div className="add-to-cart">
+                      <button className="buy" onClick={handleAddToCart}>Add to cart</button>
+                      <Link
+                          to={{
                   pathname: `/checkout/${product.id}`,
                 }}
-              >
-               <button className="buy">Buy</button>
-            </Link>
+                      >
+                          <button className="buy">Buy</button>
+                      </Link>
+                  </div>
+              </div>
           </div>
-        </div>
+          <div className="seller">
+              <img src={UserPic} alt={product.title} className="seller-img"/>
+              <p className="seller-name">Seller</p>
+          </div>
+          <div className="description">
+              <p>Description:</p>
+              <p>{product.description}</p>
+          </div>
       </div>
-      <div className="seller">
-        <img src={UserPic} alt={product.title} className="seller-img"/>
-        <p className="seller-name">Seller</p>
-      </div>
-      <div className="description">
-          <p>Description:</p>
-          <p>{product.description}</p>
-      </div>
-    </div>
   );
 };
 

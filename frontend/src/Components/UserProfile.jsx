@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useParams } from 'react-router-dom';
 import { useEffect, useState, React } from 'react';
 import './userProfile.css';

@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useParams } from 'react-router-dom';
 import React from 'react';
 
@@ -50,9 +51,9 @@ const PasswordRecovery = () => {
                 alert("Error changing password");
             });
         } catch (error) {
-            alert(error.message)
+            alert(error.message);
         }
-    }
+    };
 
     return (
         <div style={{backgroundColor:"#334155", height:"100%", width:"100%"}}>
@@ -66,6 +67,6 @@ const PasswordRecovery = () => {
             </form>
         </div>
     );
-}
+};
 
 export default PasswordRecovery;

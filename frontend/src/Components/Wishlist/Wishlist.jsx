@@ -18,21 +18,25 @@ function Wishlist() {
     return (
         <>
             {
-                wishlist ? <>
-                    <div className={styles.wishListHeader}>
-                        <button className={styles.submitBtn} onClick={handleWishListClear}>CLEAR WISHLIST</button>
-                    </div>
-                    <div className={styles.wishListContainer}>
-                        {wishlist.map(item => (
-                            <div key={item.id} className={styles.wishListWrapper}>
-                                <div className={styles.overflowHidden}>{item.title}</div>
-                                <img className={styles.wishListImg} src={item.image} alt=""/>
-                            </div>
+                wishlist ? (
+                    <>
+                        <div className={styles.wishListHeader}>
+                            <button className={styles.submitBtn} onClick={handleWishListClear}>CLEAR WISHLIST</button>
+                        </div>
+                        <div className={styles.wishListContainer}>
+                            {wishlist.map(item => (
+                                <div key={item.id} className={styles.wishListWrapper}>
+                                    <div className={styles.overflowHidden}>{item.title}</div>
+                                    <img className={styles.wishListImg} src={item.image} alt=""/>
+                                </div>
                         ))}
-                    </div>
-                </> : <div className={styles.wishListContainer}>
-                    WishList is Empty!
-                </div>
+                        </div>
+                    </>
+) : (
+    <div className={styles.wishListContainer}>
+        WishList is Empty!
+    </div>
+)
             }
         </>
     );

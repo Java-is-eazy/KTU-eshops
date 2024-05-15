@@ -58,24 +58,24 @@ const CardDetailsForm = () => {
   };
 
   return (
-    <div className="card-details-container">
-      <h2>Enter Card Details</h2>
-      <form className="card-details-form" onSubmit={handleSubmitPayment}>
-        <label>
-          Card details:
-          <CardElement
-            className="custom-base-class"
-            options={{
+      <div className="card-details-container">
+          <h2>Enter Card Details</h2>
+          <form className="card-details-form" onSubmit={handleSubmitPayment}>
+              <label>
+                  Card details:
+                  <CardElement
+                      className="custom-base-class"
+                      options={{
               hidePostalCode: true,
               iconStyle: 'solid',
             }}
-          />
-        </label>
-        {error && <div style={{ color: 'red' }}>{error}</div>}
-        {paymentSuccessful && <div style={{ color: 'green' }}>Payment Successful!</div>}
-        <button type="submit">Submit Payment</button>
-      </form>
-    </div>
+                  />
+              </label>
+              {error && <div style={{ color: 'red' }}>{error}</div>}
+              {paymentSuccessful && <div style={{ color: 'green' }}>Payment Successful!</div>}
+              <button type="submit">Submit Payment</button>
+          </form>
+      </div>
   );
 };
 

@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable testing-library/no-wait-for-side-effects */
 import React from "react";
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
@@ -13,9 +12,9 @@ jest.mock("react-router-dom", () => ({
 
 test("renders all input fields", () => {
   render(
-    <MemoryRouter>
-      <CheckoutPage />
-    </MemoryRouter>
+      <MemoryRouter>
+          <CheckoutPage />
+      </MemoryRouter>
   );
 
   const fullNameInput = screen.getByLabelText("Full Name:");
@@ -63,13 +62,13 @@ describe("CheckoutPage component", () => {
     useNavigate.mockImplementation(() => mockedNavigate);
 
     render(
-      <MemoryRouter initialEntries={["/checkout/23"]}>
-        {" "}
-        {/* Simulating navigating to /checkout/123 */}
-        <Routes>
-          <Route path="/checkout/:productId" element={<CheckoutPage />} />
-        </Routes>
-      </MemoryRouter>
+        <MemoryRouter initialEntries={["/checkout/23"]}>
+            {" "}
+            {/* Simulating navigating to /checkout/123 */}
+            <Routes>
+                <Route path="/checkout/:productId" element={<CheckoutPage />} />
+            </Routes>
+        </MemoryRouter>
     );
     const fullNameInput = screen.getByLabelText("Full Name:");
     const emailInput = screen.getByLabelText("Email:");

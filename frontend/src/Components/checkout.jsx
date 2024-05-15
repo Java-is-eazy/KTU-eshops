@@ -51,44 +51,44 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div className="checkout-container">
-      <h2>Checkout</h2>
-      <form className="checkout-form" onSubmit={handleSubmit}>
-        <label htmlFor="fullName">Full Name:</label>
-        <input type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} required />
+      <div className="checkout-container">
+          <h2>Checkout</h2>
+          <form className="checkout-form" onSubmit={handleSubmit}>
+              <label htmlFor="fullName">Full Name:</label>
+              <input type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} required />
 
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+              <label htmlFor="email">Email:</label>
+              <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
 
-        <label htmlFor="address">Address:</label>
-        <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} required />
+              <label htmlFor="address">Address:</label>
+              <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} required />
 
-        <label htmlFor="city">City:</label>
-        <input type="text" id="city" name="city" value={formData.city} onChange={handleChange} required />
+              <label htmlFor="city">City:</label>
+              <input type="text" id="city" name="city" value={formData.city} onChange={handleChange} required />
 
-        <label htmlFor="postalCode">Postal Code:</label>
-        <input type="text" id="postalCode" name="postalCode" value={formData.postalCode} onChange={handleChange} required />
+              <label htmlFor="postalCode">Postal Code:</label>
+              <input type="text" id="postalCode" name="postalCode" value={formData.postalCode} onChange={handleChange} required />
 
-        <div className="item-list-checkout">
-          <h3>Items:</h3>
-          {cartItems && cartItems.length > 0 ? (
+              <div className="item-list-checkout">
+                  <h3>Items:</h3>
+                  {cartItems && cartItems.length > 0 ? (
             cartItems.map((item, index) => (
-              <div key={index}>
-                <p>{item.title} Quantity: {item.quantity} Price: {item.price} €</p>
-              </div>
+                <div key={index}>
+                    <p>{item.title} Quantity: {item.quantity} Price: {item.price} €</p>
+                </div>
             ))
           ) : (
-            <p>No items in the cart</p>
+              <p>No items in the cart</p>
           )}
-        </div>
+              </div>
 
-        <button className="submit-btn" type="submit">Payment</button>
-        <div id="errorMessage"></div>
-        {showPaymentMethodOption && (
-          <PaymentMethodOption onSelectPaymentMethod={handlePaymentMethodSelect} />
+              <button className="submit-btn" type="submit">Payment</button>
+              <div id="errorMessage"></div>
+              {showPaymentMethodOption && (
+              <PaymentMethodOption onSelectPaymentMethod={handlePaymentMethodSelect} />
         )}
-      </form>
-    </div>
+          </form>
+      </div>
   );
 };
 

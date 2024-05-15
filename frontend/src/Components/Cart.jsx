@@ -63,14 +63,14 @@ const Cart = () => {
                 ))}
             </div>
             <div className='cart-button-div'>
-            <Link
-            to={{
+                <Link
+                    to={{
                 pathname: '/checkout',
                 search: `?items=${encodeURIComponent(JSON.stringify(cartItems))}`,
             }}
-            >
-            <button className="submit-btn">Buy</button>
-            </Link>
+                >
+                    <button className="submit-btn">Buy</button>
+                </Link>
             </div>
         </div>
     );
