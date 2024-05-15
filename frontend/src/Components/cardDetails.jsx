@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { useLocation,useParams} from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import './cardDetailsPage.css';
 import axios from 'axios';
 
@@ -10,8 +10,6 @@ const CardDetailsForm = () => {
   const elements = useElements();
   const [error, setError] = useState(null);
   const {productId} = useParams();
-  const location = useLocation();
-  const formData = location.state && location.state.formData;
 
   const handleSubmitPayment = async (e) => {
     e.preventDefault();
@@ -39,7 +37,7 @@ const CardDetailsForm = () => {
           { paymentMethod: paymentMethod, productId: productId }
         );
     
-        const { error, paymentIntent } = await stripe.confirmCardPayment(response.data.clientSecret, {
+        const { error } = await stripe.confirmCardPayment(response.data.clientSecret, {
           payment_method: {
             card: cardElement,
             billing_details: {},

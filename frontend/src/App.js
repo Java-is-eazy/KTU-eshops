@@ -130,15 +130,15 @@ const App = () => {
             </>
           }
         />
-          <Route
-              path="/wishlist/:username"
-              element={
-                  <>
-                      <Header token={token} setToken={setToken} username={username} />
-                      <Wishlist/>
-                  </>
-              }
-          />
+        <Route
+          path="/wishlist/:username"
+          element={
+            <>
+              <Header token={token} setToken={setToken} username={username} />
+              <Wishlist />
+            </>
+          }
+        />
         <Route
           path="/cart"
           element={

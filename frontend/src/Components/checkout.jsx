@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import './checkoutPage.css';
 import { useNavigate, useLocation } from 'react-router-dom';

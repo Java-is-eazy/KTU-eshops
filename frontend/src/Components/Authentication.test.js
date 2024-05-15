@@ -5,7 +5,6 @@ import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import * as ReactRouter from "react-router";
 import Authentication from "./Authentication";
-const { handleLogin } = require("./Authentication");
 
 jest.mock("react-router", () => {
   const originalModule = jest.requireActual("react-router");
@@ -251,8 +250,6 @@ describe("Authentication Component", () => {
 
   it('should navigate to "/" after successful login', async () => {
     const navigate = jest.fn();
-    const setToken = jest.fn();
-    const setUser = jest.fn();
     ReactRouter.useNavigate.mockReturnValue(navigate);
     window.alert = jest.fn();
 
