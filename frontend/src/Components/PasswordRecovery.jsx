@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
-import { useParams } from 'react-router-dom';
-import React from 'react';
+import { useParams } from "react-router-dom";
+import React from "react";
 
 
 
@@ -29,13 +29,13 @@ const PasswordRecovery = () => {
     const handleSendRequest = (e) => {
         try {
             e.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
         isStrongPassword(password);
         fetch(`${window.location.protocol}//${window.location.hostname}:3001/recover`, {
-            method: 'POST',
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json'
+              "Content-Type": "application/json"
             },
             body: JSON.stringify({ email: email, password: password, string: string})
           })          

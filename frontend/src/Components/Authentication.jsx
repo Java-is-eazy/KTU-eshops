@@ -1,9 +1,9 @@
 /* eslint-disable no-alert */
-import React, { useState } from 'react';
-import './authPage.css';
-import backgroundImage from '../assets/auth-bg.jpg';
-import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import "./authPage.css";
+import backgroundImage from "../assets/auth-bg.jpg";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Authentication = ({ setToken, setUser }) => {
     const navigate = useNavigate();
@@ -19,46 +19,46 @@ const Authentication = ({ setToken, setUser }) => {
     const isValidPhoneNumber = (phoneNumber) => {
         const phoneRegex = /^\+\d{11}$/;
         if (!phoneRegex.test(phoneNumber)) {
-            throw Error('Invalid phone number');
+            throw Error("Invalid phone number");
         }
     };
     const isValidEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            throw Error('Invalid email');
+            throw Error("Invalid email");
         }
     };
     const isStrongPassword = (password) => {
         if (password.length < 8) {
-            throw Error('Password is too short'); 
+            throw Error("Password is too short"); 
         }
   
         if (!/[A-Z]/.test(password)) {
-            throw Error('Missing uppercase letters'); 
+            throw Error("Missing uppercase letters"); 
         }
   
         if (!/[a-z]/.test(password)) {
-            throw Error('Missing lowercase letters');
+            throw Error("Missing lowercase letters");
         }
   
         if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {
-            throw Error('Missing special characters');
+            throw Error("Missing special characters");
         }
         return true;
     };
   
     const handleLogin = () => {
         try {
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-            if (username === '' || password === '') {
-                throw new Error('Please fill in all fields');
+            const username = document.getElementById("loginUsername").value;
+            const password = document.getElementById("loginPassword").value;
+            if (username === "" || password === "") {
+                throw new Error("Please fill in all fields");
             }
             isStrongPassword(password);
             fetch(`${window.location.protocol}//${window.location.hostname}:3001/login`, {
-                method: 'POST',
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ username, password }),
             })
@@ -70,8 +70,8 @@ const Authentication = ({ setToken, setUser }) => {
                         const data = await response.json();
                         setToken(await data.token);
                         setUser(await data.username);
-                        alert('User logged in successfully');
-                        navigate('/');
+                        alert("User logged in successfully");
+                        navigate("/");
                     }
                 });
         } catch (error) {
@@ -82,15 +82,15 @@ const Authentication = ({ setToken, setUser }) => {
     const handleSendRequest = (e) => {
         e.preventDefault();
         try {
-            const email = document.getElementById('email').value;
-            if (email === '') {
-                throw new Error('Please fill in all fields');
+            const email = document.getElementById("email").value;
+            if (email === "") {
+                throw new Error("Please fill in all fields");
             }
             isValidEmail(email);
             fetch(`${window.location.protocol}//${window.location.hostname}:3001/passwordrecovery`, {
-                method: 'POST',
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ email }),
             })
@@ -99,7 +99,7 @@ const Authentication = ({ setToken, setUser }) => {
                         alert(await response.text());
                     }
                     else{
-                        alert('Password recovery email sent successfully');
+                        alert("Password recovery email sent successfully");
                         setShowModal(false);
                     }
                 });
@@ -115,24 +115,24 @@ const Authentication = ({ setToken, setUser }) => {
 
     const handleRegister = () => {
         try {
-            const username = document.getElementById('signupUsername').value;
-            const password = document.getElementById('password').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            if (username === '' || password === '' || confirmPassword === '') {
-                throw new Error('Please fill in all fields');
+            const username = document.getElementById("signupUsername").value;
+            const password = document.getElementById("password").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            if (username === "" || password === "" || confirmPassword === "") {
+                throw new Error("Please fill in all fields");
             }
             if (password !== confirmPassword) {
-                throw new Error('Passwords do not match');
+                throw new Error("Passwords do not match");
             }
             isValidPhoneNumber(phone);
             isValidEmail(email);
             isStrongPassword(password);
             fetch(`${window.location.protocol}//${window.location.hostname}:3001/register`, {
-                method: 'POST',
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ username, password, email, phone }),
             })
@@ -141,7 +141,7 @@ const Authentication = ({ setToken, setUser }) => {
                         alert(await response.text());
                     }
                     else{
-                        alert('User registered successfully');
+                        alert("User registered successfully");
                         setIsLogin(true);
                     }
                 });
@@ -152,11 +152,11 @@ const Authentication = ({ setToken, setUser }) => {
     };
 
     return (
-        <div className="full-height" style={{backgroundImage: `url(${backgroundImage})`, backgroundSize:'cover', backgroundPosition: 'bottom right'}}>
-            <div className={`auth-container ${showModal && 'full-window-modal'}`}>
+        <div className="full-height" style={{backgroundImage: `url(${backgroundImage})`, backgroundSize:"cover", backgroundPosition: "bottom right"}}>
+            <div className={`auth-container ${showModal && "full-window-modal"}`}>
                 <h1>ProductForge</h1>
                 <div className="buttons-container">
-                    <div className={`slider ${isLogin ? 'left' : 'right'}`}></div>
+                    <div className={`slider ${isLogin ? "left" : "right"}`}></div>
                     <button className="login-btn" onClick={handleLoginClick}>Sign In</button>
                     <button className="signup-btn" onClick={handleSignupClick}>Signup</button>
                 </div>
@@ -190,8 +190,8 @@ const Authentication = ({ setToken, setUser }) => {
             {showModal && (
                 <div className="modal-recovery">
                     <div className="modal-content">
-                        <span style={{color:'white', float:'left'}} onClick={() => setShowModal(false)}>&times;</span>
-                        <h1 style={{color:'white'}}>ProductForge password recovery</h1>
+                        <span style={{color:"white", float:"left"}} onClick={() => setShowModal(false)}>&times;</span>
+                        <h1 style={{color:"white"}}>ProductForge password recovery</h1>
                         <form>
                             <p className='modal-label'>Email address of the account</p>
                             <input className='input' type="email" id="email" name="email" required />

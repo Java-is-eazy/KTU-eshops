@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { useParams} from 'react-router-dom';
-import './cardDetailsPage.css';
-import axios from 'axios';
+import React, { useState } from "react";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { useParams} from "react-router-dom";
+import "./cardDetailsPage.css";
+import axios from "axios";
 
 const CardDetailsForm = () => {
   const [paymentSuccessful, setPaymentSuccessful] = useState(false);
@@ -22,18 +22,18 @@ const CardDetailsForm = () => {
     const cardElement = elements.getElement(CardElement);
   
     const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
+      type: "card",
       card: cardElement,
     });
   
     if (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       setError(error.message);
     } else {
-      console.log('Payment method:', paymentMethod);
+      console.log("Payment method:", paymentMethod);
       try {
         const response = await axios.post(
-          'http://localhost:3001/api/checkout/create-payment-intent',
+          "http://localhost:3001/api/checkout/create-payment-intent",
           { paymentMethod: paymentMethod, productId: productId }
         );
     
@@ -45,13 +45,13 @@ const CardDetailsForm = () => {
         });
     
         if (error) {
-          console.error('Error creating payment intent:', error);
+          console.error("Error creating payment intent:", error);
           setError(error.message); // Set error message again in case of confirmation error
         } else {
           setPaymentSuccessful(true); // Set success state if payment confirmed
         }
       } catch (error) {
-        console.error('Error creating payment intent:', error);
+        console.error("Error creating payment intent:", error);
         setError(error.message);
       }
     }
@@ -67,12 +67,12 @@ const CardDetailsForm = () => {
                       className="custom-base-class"
                       options={{
               hidePostalCode: true,
-              iconStyle: 'solid',
+              iconStyle: "solid",
             }}
                   />
               </label>
-              {error && <div style={{ color: 'red' }}>{error}</div>}
-              {paymentSuccessful && <div style={{ color: 'green' }}>Payment Successful!</div>}
+              {error && <div style={{ color: "red" }}>{error}</div>}
+              {paymentSuccessful && <div style={{ color: "green" }}>Payment Successful!</div>}
               <button type="submit">Submit Payment</button>
           </form>
       </div>

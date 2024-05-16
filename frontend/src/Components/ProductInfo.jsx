@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ProductInfo.css";
-import { useParams, useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import UserPic from '../assets/user-pic.png';
+import { useParams, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+import UserPic from "../assets/user-pic.png";
 
 
 const API_URL = `${window.location.protocol}//${window.location.hostname}:3001/items`;
@@ -31,20 +31,20 @@ const ProductInfo = ({addToCart}) => {
   }, [productId]);
 
   const handleAddToCart = () => {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
     const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
 
     if (existingItemIndex !== -1) {
       const updatedCart = [...cartItems];
       updatedCart[existingItemIndex].quantity += 1;
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
     } else {
       const updatedCart = [...cartItems, { ...product, quantity: 1 }];
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
 
-    navigate('/cart');
+    navigate("/cart");
   };
 
   if (!product) {

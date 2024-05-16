@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable no-undef */
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react";
@@ -258,7 +259,7 @@ describe("Authentication Component", () => {
     });
 
     const { getByTestId } = render(
-        <Authentication setToken={() => {}} setUser={() => {}} />
+      <Authentication setToken={() => {}} setUser={() => {}} />
     );
 
     fireEvent.change(getByTestId("loginUsername"), {

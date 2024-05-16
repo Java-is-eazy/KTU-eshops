@@ -1,8 +1,8 @@
 /* eslint-disable no-alert */
-import { useParams } from 'react-router-dom';
-import { useEffect, useState, React } from 'react';
-import './userProfile.css';
-import PropTypes from 'prop-types';
+import { useParams } from "react-router-dom";
+import { useEffect, useState, React } from "react";
+import "./userProfile.css";
+import PropTypes from "prop-types";
 
 
 export default function UserProfile({ myUsername, token, handleLogout }) {
@@ -33,10 +33,10 @@ export default function UserProfile({ myUsername, token, handleLogout }) {
         const confirmDelete = window.confirm("Are you sure you want to delete your account?");
         if (confirmDelete) {
             fetch(`${window.location.protocol}//${window.location.hostname}:3001/user`, {
-                method: 'DELETE',
+                method: "DELETE",
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `${token}`
+                    "Content-Type": "application/json",
+                    "Authorization": `${token}`
                 },
                 body: JSON.stringify({ username: user.username })
             })
@@ -44,7 +44,7 @@ export default function UserProfile({ myUsername, token, handleLogout }) {
                     if (response.ok) {
                         alert("Account deleted successfully");
                         handleLogout();
-                        window.location.href = '/';
+                        window.location.href = "/";
                     } else {
                         alert("Unable to delete account");
                     }
@@ -60,10 +60,10 @@ export default function UserProfile({ myUsername, token, handleLogout }) {
         let reason = prompt("Please enter the reason for reporting this account:");
         if (reason) {
             fetch(`${window.location.protocol}//${window.location.hostname}:3001/report`, {
-                method: 'POST',
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `${token}`
+                    "Content-Type": "application/json",
+                    "Authorization": `${token}`
                 },
                 body: JSON.stringify({ username: user.username, reason })
             })

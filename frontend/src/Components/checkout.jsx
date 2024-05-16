@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
-import './checkoutPage.css';
-import { useNavigate, useLocation } from 'react-router-dom';
-import PaymentMethodOption from './paymentMethod';
+import React, { useState } from "react";
+import "./checkoutPage.css";
+import { useNavigate, useLocation } from "react-router-dom";
+import PaymentMethodOption from "./paymentMethod";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -10,14 +10,14 @@ const CheckoutPage = () => {
 
 
   const queryParams = new URLSearchParams(location.search);
-  const cartItems = JSON.parse(decodeURIComponent(queryParams.get('items')));
+  const cartItems = JSON.parse(decodeURIComponent(queryParams.get("items")));
 
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    address: '',
-    city: '',
-    postalCode: ''
+    fullName: "",
+    email: "",
+    address: "",
+    city: "",
+    postalCode: ""
   });
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
@@ -35,7 +35,7 @@ const CheckoutPage = () => {
     setSelectedPaymentMethod(method);
     setShowPaymentMethodOption(false);
 
-    navigate(`/payment`, { state: { formData: formData, cartItems: cartItems } });
+    navigate("/payment", { state: { formData: formData, cartItems: cartItems } });
   };
 
   const handleSubmit = (e) => {
@@ -43,8 +43,8 @@ const CheckoutPage = () => {
     const isEmpty = Object.values(formData).some(field => !field);
 
     if (isEmpty) {
-      const errorMessageElement = document.getElementById('errorMessage');
-      errorMessageElement.textContent = 'Please fill in all required fields!';
+      const errorMessageElement = document.getElementById("errorMessage");
+      errorMessageElement.textContent = "Please fill in all required fields!";
       return;
     }
     setShowPaymentMethodOption(true);

@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from "react";
 import styles from "./Wishlist.module.css";
 
 function Wishlist() {
     const [wishlist, setWishlist] = useState([]);
 
     useEffect(() => {
-        let storedWishlist = JSON.parse(localStorage.getItem('wishList'));
+        let storedWishlist = JSON.parse(localStorage.getItem("wishList"));
         if (storedWishlist) {
             setWishlist(storedWishlist);
         }
     }, []);
 
     const handleWishListClear = () => {
-        localStorage.removeItem('wishList');
+        localStorage.removeItem("wishList");
         setWishlist([]);
     };
     return (

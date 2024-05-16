@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./sort.css";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export default function Sort({ jsonData, onDataSort }) {
-    const [sortBy, setSortBy] = useState('alphabetically');
+    const [sortBy, setSortBy] = useState("alphabetically");
 
     useEffect(() => {
         let filterData = [...jsonData];
