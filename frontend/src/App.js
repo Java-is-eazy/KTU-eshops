@@ -173,7 +173,7 @@ const App = () => {
           element={
             <>
               <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
-              <h1 style={{ textAlign: "center" }}>temporary not found page</h1>
+              <h1 style={{ textAlign: "center", position:"relative", top:"50%" }}>Page not found</h1>
             </>
           }
         />
