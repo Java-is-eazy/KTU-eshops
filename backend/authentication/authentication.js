@@ -10,7 +10,6 @@ const tryLogin = async (username, password) => {
     }
 
     const hashedPassword = hashPassword(username, password);
-
     const user = await getUserByUsername(username);
     if (!user) {
       throw Error("User does not exist");
@@ -21,6 +20,7 @@ const tryLogin = async (username, password) => {
     }
     return {
       username: user.username,
+      role: user.role,
       token: generateToken({ role: user.role, id: user.id }),
     };
   } catch (error) {

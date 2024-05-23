@@ -19,6 +19,7 @@ import CardDetailsForm from "./Components/cardDetails";
 import UserProfile from "./Components/UserProfile";
 import Cart from "./Components/Cart";
 import RecoverPassword from "./Components/PasswordRecovery";
+import AdminPanel from "./Components/AdminPanel";
 const stripePromise = loadStripe(
   "pk_test_51P2Cfs2LzASn7iwOCPkdqxaO2LbTRLJjpDCv0uY419KTMDcnBAejH2mYy51SmesDJNFjdajznygXlaBOFJykNCYA00Kte16mZH"
 );
@@ -26,22 +27,28 @@ const stripePromise = loadStripe(
 const App = () => {
   const [token, setToken] = useState("");
   const [username, setUser] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const storedToken = Cookies.get("token");
     const storedUsername = Cookies.get("username");
+    const getRole = Cookies.get("role");
     if (storedToken) setToken(storedToken);
     if (storedUsername) setUser(storedUsername);
+    if (getRole === "admin") setIsAdmin(true);
   }, []);
 
   useEffect(() => {
     Cookies.set("token", token);
     Cookies.set("username", username);
-  }, [token, username]);
+    Cookies.set("role", isAdmin ? "admin" : "user");
+
+  }, [token, username, isAdmin]);
 
   function handleLogout() {
     setToken("");
     setUser("");
+    setIsAdmin(false);
   }
 
   return (
@@ -51,7 +58,7 @@ const App = () => {
           path="/"
           element={
             <>
-              <Header token={token} setToken={setToken} username={username} />
+              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
               <ProductPage />
             </>
           }
@@ -60,8 +67,8 @@ const App = () => {
           path="/login"
           element={
             <>
-              <Header token={token} setToken={setToken} username={username} />
-              <Authentication setToken={setToken} setUser={setUser} />
+              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
+              <Authentication setToken={setToken} setUser={setUser} setIsAdmin={setIsAdmin} />
             </>
           }
         />
@@ -69,7 +76,7 @@ const App = () => {
           path="/addyourproduct"
           element={
             <>
-              <Header token={token} setToken={setToken} username={username} />
+              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
               <ProductAdd token={token} setToken={setToken} />
             </>
           }
@@ -78,7 +85,7 @@ const App = () => {
           path="/product/:productId"
           element={
             <>
-              <Header token={token} setToken={setToken} />
+              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
               <ProductInfo />
             </>
           }
@@ -88,7 +95,7 @@ const App = () => {
           element={
             <Elements stripe={stripePromise}>
               <>
-                <Header token={token} setToken={setToken} />
+              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
                 <CheckoutPage />
               </>
             </Elements>
@@ -99,7 +106,7 @@ const App = () => {
           element={
             <Elements stripe={stripePromise}>
               <>
-                <Header token={token} setToken={setToken} />
+              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
                 <CheckoutPage />
               </>
             </Elements>
@@ -110,7 +117,7 @@ const App = () => {
           element={
             <Elements stripe={stripePromise}>
               <>
-                <Header token={token} setToken={setToken} />
+              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
                 <CardDetailsForm />
               </>
             </Elements>
@@ -120,9 +127,23 @@ const App = () => {
           path="/userprofile/:username"
           element={
             <>
-              <Header token={token} setToken={setToken} username={username} />
+              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
               <UserProfile
                 myUsername={username}
+                token={token}
+                handleLogout={handleLogout}
+              />
+            </>
+          }
+        />
+        <Route
+          path="/adminpanel"
+          element={
+            <>
+              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
+              <AdminPanel
+                myUsername={username}
+
                 token={token}
                 handleLogout={handleLogout}
               />
@@ -133,7 +154,7 @@ const App = () => {
           path="/cart"
           element={
             <>
-              <Header token={token} setToken={setToken} username={username} />
+              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
               <Cart />
             </>
           }
@@ -151,7 +172,7 @@ const App = () => {
           path="/404"
           element={
             <>
-              <Header token={token} setToken={setToken} username={username} />
+              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
               <h1 style={{ textAlign: "center" }}>temporary not found page</h1>
             </>
           }
