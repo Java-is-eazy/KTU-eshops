@@ -25,6 +25,15 @@
     align-items: center;
 }
 
+.window-container {
+    position: relative;
+    top: 15%;
+    text-align: center;
+    width: 50%;
+    background-color: #334155;
+    padding: 1rem;
+}
+
 .user-profile-content {
     display: flex;
     justify-content: center;

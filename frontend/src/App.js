@@ -143,9 +143,9 @@ const App = () => {
               <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
               <AdminPanel
                 myUsername={username}
-
                 token={token}
                 handleLogout={handleLogout}
+                isAdmin={isAdmin}
               />
             </>
           }
