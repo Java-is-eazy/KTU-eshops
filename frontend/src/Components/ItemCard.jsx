@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./ItemCard.css";
+import PropTypes from 'prop-types';
+
 
 const ItemCard = ({ item }) => {
   return (
@@ -19,6 +21,16 @@ const ItemCard = ({ item }) => {
       </div>
     </div>
   );
+};
+
+ItemCard.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    price: PropTypes.number,
+    image: PropTypes.string,
+    promoted: PropTypes.bool
+  }).isRequired
 };
 
 export default ItemCard;

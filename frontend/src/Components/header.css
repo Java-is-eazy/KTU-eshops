@@ -54,6 +54,7 @@ a {
 
 li, ul {
     display: flex;
+    flex-direction: row;
     align-items: center;
     margin: 0;
     vertical-align: -webkit-baseline-middle;

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import './authPage.css';
 import backgroundImage from '../assets/auth-bg.jpg';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-
-const Authentication = ({setToken, setUser}) => {
+const Authentication = ({ setToken, setUser }) => {
   const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(true);
     const handleLoginClick = () => {
@@ -150,7 +150,7 @@ const Authentication = ({setToken, setUser}) => {
       }
     }
 
-    return (
+return (
     <div className="full-height" style={{backgroundImage: `url(${backgroundImage})`, backgroundSize:'cover', backgroundPosition: 'bottom right'}}>
       <div className={`auth-container ${showModal && "full-window-modal"}`}>
         <h1>ProductForge</h1>
@@ -201,6 +201,12 @@ const Authentication = ({setToken, setUser}) => {
       )}  
     </div>
     );
-}
+};
+
+Authentication.propTypes = {
+  setToken: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
+};
+
 
 export default Authentication;

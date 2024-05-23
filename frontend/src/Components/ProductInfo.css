@@ -31,7 +31,7 @@ p {
 
 .picture {
     border-radius: 5px;
-    width: 50%;
+    width: 40%;
     height: auto;
     cursor: pointer;
 }
@@ -45,14 +45,14 @@ p {
 }
 
 .buy {
-    padding: 20px 10px;
+    height: 100px;
     color: #000000;
     text-decoration: none;
     background: #ffce00;
     border-radius: 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    width: 50%;
+    width: 40rem;
     margin-right: 10px;
     cursor: pointer;
 }
@@ -66,16 +66,18 @@ p {
     height: 40%;
 }
 
-.add-to-cart,
-.buy-now {
-    display: inline-flex;
-    margin-left: 10%;
-    height: 5rem;
+.add-to-cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .description {
     padding: 2rem;
     width: 60%;
+    font-size: 50px;
+    margin-bottom: 3rem;
 }
 
 .seller {
@@ -108,14 +110,13 @@ p {
         cursor: pointer;
         margin: 2rem;
         height: auto;
-        border-style: dashed;
     }
 
     .add-to-cart {
         width: 100%;
     }
 
-    .buy-now {
+    .add-to-cart {
         width: 100%;
     }
     
@@ -126,7 +127,6 @@ p {
     .info-right {
         align-self: start;
         width: 100%;
-        border-style: dashed;
         height: 30vh;
     }
 

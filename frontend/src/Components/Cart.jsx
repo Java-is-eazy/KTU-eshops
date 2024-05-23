@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from "react-router-dom";
 import "./cart.css";
 
 const Cart = () => {
@@ -30,16 +31,13 @@ const Cart = () => {
         localStorage.setItem('cart', JSON.stringify(updatedCart));
     };
 
-    const handleCheckout = () => {
-    };
-
     return (
         <div className={'custom-container'}>
             <div className="header">
                 <h2>Cart</h2>
                 <div className="right-side">
                     <p>TOTAL: {totalPrice} €</p>
-                    <a href="#" className={'clear-cart-btn'} onClick={handleClearCart}>CLEAR CART</a>
+                    <button className={'submit-btn'} onClick={handleClearCart}>CLEAR CART</button>
                 </div>
             </div>
             <div className="cart-items-container">
@@ -64,8 +62,15 @@ const Cart = () => {
                     </div>
                 ))}
             </div>
-            <div className={'checkout-container'}>
-                <button className={'checkout-btn'} onClick={handleCheckout}>CHECKOUT</button>
+            <div className='cart-button-div'>
+            <Link
+            to={{
+                pathname: '/checkout',
+                search: `?items=${encodeURIComponent(JSON.stringify(cartItems))}`,
+            }}
+            >
+            <button className="submit-btn">Buy</button>
+            </Link>
             </div>
         </div>
     );

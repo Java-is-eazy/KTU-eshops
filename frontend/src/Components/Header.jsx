@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, React } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from '../assets/logo.png';
 import './header.css';
+import PropTypes from 'prop-types';
+
 
 function Header({ token, setToken, username }) {
   const location = useLocation();
@@ -57,5 +59,12 @@ function Header({ token, setToken, username }) {
     </header>
   )
 }
+
+Header.propTypes = {
+  setToken: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+};
+
 
 export default Header;
