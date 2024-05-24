@@ -1,5 +1,5 @@
-/* eslint-disable testing-library/prefer-screen-queries */
-/* eslint-disable testing-library/no-wait-for-multiple-assertions */
+/* eslint-disable camelcase */
+/* eslint-disable no-undef */
 import React, { useState } from "react";
 import { render, waitFor, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
@@ -95,11 +95,11 @@ describe("UserProfile Component", () => {
     window.confirm = jest.fn().mockImplementation(() => true);
 
     const { getByTestId } = render(
-      <UserProfile
-        myUsername="testUser"
-        token="yourAuthToken"
-        handleLogout={handleLogoutMock}
-      />
+        <UserProfile
+            myUsername="testUser"
+            token="yourAuthToken"
+            handleLogout={handleLogoutMock}
+        />
     );
 
     // Wait for the component to finish rendering and data fetching to complete

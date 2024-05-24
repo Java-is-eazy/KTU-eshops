@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 import { useState, React } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from '../assets/logo.png';
-import './header.css';
-import PropTypes from 'prop-types';
+import logo from "../assets/logo.png";
+import "./header.css";
+import PropTypes from "prop-types";
 
 
 function Header({ token, setToken, username, isAdmin }) {
@@ -12,7 +13,7 @@ function Header({ token, setToken, username, isAdmin }) {
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
-  }
+  };
 
   if (currentLocation !== location.pathname) {
     setCurrentLocation(location.pathname);

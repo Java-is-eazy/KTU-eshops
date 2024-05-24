@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./cart.css";
 
 const Cart = () => {
@@ -7,7 +7,7 @@ const Cart = () => {
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
-        const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
         setCartItems(storedCart);
     }, []);
 
@@ -20,7 +20,7 @@ const Cart = () => {
     }, [cartItems]);
 
     const handleClearCart = () => {
-        localStorage.removeItem('cart');
+        localStorage.removeItem("cart");
         setCartItems([]);
     };
 
@@ -28,16 +28,16 @@ const Cart = () => {
         const updatedCart = [...cartItems];
         updatedCart[index].quantity = quantity;
         setCartItems(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
     };
 
     return (
-        <div className={'custom-container'}>
+        <div className={"custom-container"}>
             <div className="header">
                 <h2>Cart</h2>
                 <div className="right-side">
                     <p>TOTAL: {totalPrice} €</p>
-                    <button className={'submit-btn'} onClick={handleClearCart}>CLEAR CART</button>
+                    <button className={"submit-btn"} onClick={handleClearCart}>CLEAR CART</button>
                 </div>
             </div>
             <div className="cart-items-container">
@@ -49,7 +49,7 @@ const Cart = () => {
                         </div>
                         <div className="item-info-count">
                             <input
-                                className={'count-input'}
+                                className={"count-input"}
                                 type="number"
                                 value={item.quantity || 1}
                                 min={1}
@@ -63,14 +63,14 @@ const Cart = () => {
                 ))}
             </div>
             <div className='cart-button-div'>
-            <Link
-            to={{
-                pathname: '/checkout',
+                <Link
+                    to={{
+                pathname: "/checkout",
                 search: `?items=${encodeURIComponent(JSON.stringify(cartItems))}`,
             }}
-            >
-            <button className="submit-btn">Buy</button>
-            </Link>
+                >
+                    <button className="submit-btn">Buy</button>
+                </Link>
             </div>
         </div>
     );

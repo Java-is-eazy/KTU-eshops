@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 
 
+
 const PasswordRecovery = () => {
     const { string } = useParams();
 
@@ -28,15 +29,23 @@ const PasswordRecovery = () => {
     const handleSendRequest = (e) => {
         try {
             e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            isStrongPassword(password);
-            fetch(`${window.location.protocol}//${window.location.hostname}:3001/recover`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email: email, password: password, string: string })
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        isStrongPassword(password);
+        fetch(`${window.location.protocol}//${window.location.hostname}:3001/recover`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email: email, password: password, string: string})
+          })          
+            .then(async (response) => {
+                if (response.ok) {
+                    alert("Password recovery successful");
+                } else {
+                    alert("Unable to change password");
+                }
             })
                 .then(async (response) => {
                     if (response.ok) {
@@ -50,9 +59,9 @@ const PasswordRecovery = () => {
                     alert("Error changing password");
                 });
         } catch (error) {
-            alert(error.message)
+            alert(error.message);
         }
-    }
+    };
 
     return (
         <div style={{ backgroundColor: "#334155", height: "100%", width: "100%" }}>
@@ -66,6 +75,6 @@ const PasswordRecovery = () => {
             </form>
         </div>
     );
-}
+};
 
 export default PasswordRecovery;

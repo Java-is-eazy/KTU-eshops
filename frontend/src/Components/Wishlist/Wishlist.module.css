@@ -1,0 +1,40 @@
+.wishListContainer{
+    margin: 100px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+.wishListWrapper{
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 200px;
+    max-height: 200px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+.wishListImg{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.overflowHidden{
+    overflow: hidden;
+}
+.wishListHeader{
+    margin: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.submitBtn {
+    width: auto;
+    border-radius: 50px;
+    border: 0;
+    background-color: #36c436;
+    padding: 20px 40px 20px 40px;
+    font-size: 20px;
+    font-weight: bold;
+}

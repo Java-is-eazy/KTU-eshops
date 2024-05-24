@@ -20,6 +20,7 @@ import UserProfile from "./Components/UserProfile";
 import Cart from "./Components/Cart";
 import RecoverPassword from "./Components/PasswordRecovery";
 import AdminPanel from "./Components/AdminPanel";
+import Wishlist from "./Components/Wishlist/Wishlist";
 const stripePromise = loadStripe(
   "pk_test_51P2Cfs2LzASn7iwOCPkdqxaO2LbTRLJjpDCv0uY419KTMDcnBAejH2mYy51SmesDJNFjdajznygXlaBOFJykNCYA00Kte16mZH"
 );

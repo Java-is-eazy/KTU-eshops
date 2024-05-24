@@ -1,43 +1,44 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+/* eslint-disable no-alert */
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./ProductAdd.css";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 
 const ProductAdd = ({ token }) => {
     const navigate = useNavigate();
 
     const redirectToLogin = () => {
-        navigate('/login');
+        navigate("/login");
     };
 
     const postProduct = async () => {
         let product = await {
-            title: document.getElementById('Title').value,
-            price: document.getElementById('Price').value,
-            description: document.getElementById('Description').value,
-            city: document.getElementById('City').value,
-            image: document.getElementById('ImageLink').value
+            title: document.getElementById("Title").value,
+            price: document.getElementById("Price").value,
+            description: document.getElementById("Description").value,
+            city: document.getElementById("City").value,
+            image: document.getElementById("ImageLink").value
         };
-        const response = await fetch('http://localhost:3001/items', {
-            method: 'POST',
+        const response = await fetch("http://localhost:3001/items", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
                 Authorization: `${token}`
             },
             body: JSON.stringify(product)
         });
         if (response.ok) {
-            alert('Product added successfully!');
-            navigate('/');
+            alert("Product added successfully!");
+            navigate("/");
         }
         else {
-            alert('Failed to add product');
+            alert("Failed to add product");
         }
     };
 
 
-    if (token === '') {
+    if (token === "") {
         return (
             <div className='login-container'>
                 <h2>Please log in to add a product.</h2>
@@ -62,8 +63,7 @@ const ProductAdd = ({ token }) => {
             <button className="submit-btn add-btn" onClick={postProduct}>Add!</button>
         </div>
     );
-}
-
+};
 ProductAdd.propTypes = {
     token: PropTypes.string.isRequired
 };

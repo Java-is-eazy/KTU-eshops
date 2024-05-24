@@ -79,29 +79,29 @@ function ProductPage() {
   };
 
   return (
-    <div data-testid="item-list">
-        <Link to='/addyourproduct'  className="prdAdd"><img src={plus} alt="Add" className="addimg"/></Link>
-        <div className="custom-flex">
-            <div className='search'>
-                <input 
-                    placeholder="Search for products"
-                    value={filterQuery}
-                    onChange={(e) => setFilterQuery(e.target.value)}
-                />
-                <img 
-                    src="https://raw.githubusercontent.com/gist/adrianhajdin/997a8cdf94234e889fa47be89a4759f1/raw/f13e5a9a0d1e299696aa4a0fe3a0026fa2a387f7/search.svg"
-                    alt="search"
-                    onClick={() => {}}
-                />
-            </div>
-            <div className="sort">
-                <Sort jsonData={sortedFilteredData} onDataSort={setSortedFilteredData}/>
-            </div>
-        </div>
-        {sortedFilteredData.length === 0 ? (
-            <div className="empty">
-                <h2>No items found</h2>
-            </div>
+      <div data-testid="item-list">
+          <Link to='/addyourproduct'  className="prdAdd"><img src={plus} alt="Add" className="addimg"/></Link>
+          <div className="custom-flex">
+              <div className='search'>
+                  <input 
+                      placeholder="Search for products"
+                      value={filterQuery}
+                      onChange={(e) => setFilterQuery(e.target.value)}
+                  />
+                  <img 
+                      src="https://raw.githubusercontent.com/gist/adrianhajdin/997a8cdf94234e889fa47be89a4759f1/raw/f13e5a9a0d1e299696aa4a0fe3a0026fa2a387f7/search.svg"
+                      alt="search"
+                      onClick={() => {}}
+                  />
+              </div>
+              <div className="sort">
+                  <Sort jsonData={sortedFilteredData} onDataSort={setSortedFilteredData}/>
+              </div>
+          </div>
+          {sortedFilteredData.length === 0 ? (
+              <div className="empty">
+                  <h2>No items found</h2>
+              </div>
         ) : (
             <div className='container'>
                 {sortedFilteredData.slice(0, loadedItemsCount).map((item) => (
@@ -109,11 +109,11 @@ function ProductPage() {
                 ))}
             </div>
         )}
-        <div ref={loader} style={{ marginTop: "20px", textAlign: "center" }}>
-            {loading && <p>Loading...</p>}
-        </div>
-    </div>
-);
+          <div ref={loader} style={{ marginTop: "20px", textAlign: "center" }}>
+              {loading && <p>Loading...</p>}
+          </div>
+      </div>
+  );
 }
 
 
