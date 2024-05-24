@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   BrowserRouter as Router,
   Routes,
@@ -43,7 +44,6 @@ const App = () => {
     Cookies.set("token", token);
     Cookies.set("username", username);
     Cookies.set("role", isAdmin ? "admin" : "user");
-
   }, [token, username, isAdmin]);
 
   function handleLogout() {
@@ -59,7 +59,12 @@ const App = () => {
           path="/"
           element={
             <>
-              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
+              <Header
+                token={token}
+                setToken={handleLogout}
+                username={username}
+                isAdmin={isAdmin}
+              />
               <ProductPage />
             </>
           }
@@ -68,8 +73,31 @@ const App = () => {
           path="/login"
           element={
             <>
-              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
-              <Authentication setToken={setToken} setUser={setUser} setIsAdmin={setIsAdmin} />
+              <Header
+                token={token}
+                setToken={handleLogout}
+                username={username}
+                isAdmin={isAdmin}
+              />
+              <Authentication
+                setToken={setToken}
+                setUser={setUser}
+                setIsAdmin={setIsAdmin}
+              />
+            </>
+          }
+        />
+        <Route
+          path="/wishlist/:username"
+          element={
+            <>
+              <Header
+                token={token}
+                setToken={setToken}
+                username={username}
+                isAdmin={isAdmin}
+              />
+              <Wishlist />
             </>
           }
         />
@@ -77,7 +105,12 @@ const App = () => {
           path="/addyourproduct"
           element={
             <>
-              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
+              <Header
+                token={token}
+                setToken={handleLogout}
+                username={username}
+                isAdmin={isAdmin}
+              />
               <ProductAdd token={token} setToken={setToken} />
             </>
           }
@@ -86,7 +119,12 @@ const App = () => {
           path="/product/:productId"
           element={
             <>
-              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
+              <Header
+                token={token}
+                setToken={handleLogout}
+                username={username}
+                isAdmin={isAdmin}
+              />
               <ProductInfo />
             </>
           }
@@ -96,7 +134,12 @@ const App = () => {
           element={
             <Elements stripe={stripePromise}>
               <>
-              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
+                <Header
+                  token={token}
+                  setToken={handleLogout}
+                  username={username}
+                  isAdmin={isAdmin}
+                />
                 <CheckoutPage />
               </>
             </Elements>
@@ -107,7 +150,12 @@ const App = () => {
           element={
             <Elements stripe={stripePromise}>
               <>
-              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
+                <Header
+                  token={token}
+                  setToken={handleLogout}
+                  username={username}
+                  isAdmin={isAdmin}
+                />
                 <CheckoutPage />
               </>
             </Elements>
@@ -118,7 +166,12 @@ const App = () => {
           element={
             <Elements stripe={stripePromise}>
               <>
-              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
+                <Header
+                  token={token}
+                  setToken={handleLogout}
+                  username={username}
+                  isAdmin={isAdmin}
+                />
                 <CardDetailsForm />
               </>
             </Elements>
@@ -128,7 +181,12 @@ const App = () => {
           path="/userprofile/:username"
           element={
             <>
-              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
+              <Header
+                token={token}
+                setToken={handleLogout}
+                username={username}
+                isAdmin={isAdmin}
+              />
               <UserProfile
                 myUsername={username}
                 token={token}
@@ -141,7 +199,12 @@ const App = () => {
           path="/adminpanel"
           element={
             <>
-              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
+              <Header
+                token={token}
+                setToken={handleLogout}
+                username={username}
+                isAdmin={isAdmin}
+              />
               <AdminPanel
                 myUsername={username}
                 token={token}
@@ -155,7 +218,12 @@ const App = () => {
           path="/cart"
           element={
             <>
-              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
+              <Header
+                token={token}
+                setToken={handleLogout}
+                username={username}
+                isAdmin={isAdmin}
+              />
               <Cart />
             </>
           }
@@ -173,8 +241,21 @@ const App = () => {
           path="/404"
           element={
             <>
-              <Header token={token} setToken={handleLogout} username={username} isAdmin={isAdmin}/>
-              <h1 style={{ textAlign: "center", position:"relative", top:"50%" }}>Page not found</h1>
+              <Header
+                token={token}
+                setToken={handleLogout}
+                username={username}
+                isAdmin={isAdmin}
+              />
+              <h1
+                style={{
+                  textAlign: "center",
+                  position: "relative",
+                  top: "50%",
+                }}
+              >
+                Page not found
+              </h1>
             </>
           }
         />

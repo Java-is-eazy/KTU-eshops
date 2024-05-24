@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const AdminPanel = ({ isAdmin }) => {
     const [isProductModalOpen, setProductModalOpen] = useState(false);
@@ -61,7 +61,7 @@ const AdminPanel = ({ isAdmin }) => {
             )}
         </div>
     );
-}
+};
 
 AdminPanel.propTypes = {
     isAdmin: PropTypes.bool.isRequired

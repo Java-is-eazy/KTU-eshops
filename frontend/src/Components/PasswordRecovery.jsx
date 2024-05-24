@@ -1,6 +1,8 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import React from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-alert */
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import React from "react";
 
 
 
