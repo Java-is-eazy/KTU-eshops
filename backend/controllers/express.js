@@ -8,6 +8,8 @@ const {
   getUserByEmail,
   changePassword,
   createPasswordRecoveryRequest,
+  getListingByID,
+  deleteListing,
 } = require("../database/controller");
 
 const { sendEmail } = require("../mail/mailer");
@@ -121,6 +123,36 @@ const setupExpress = (app) => {
       }
     } catch (error) {
       res.status(500).send(error.message);
+    }
+  });
+
+  app.delete("/listing/:id", async (req, res) => {
+    try {
+      const id = req.params.id;
+      if (!id) {
+        res.status(400).send("Please provide an id");
+        return;
+      }
+      const listing = await getListingByID(id);
+      if (!listing) {
+        res.status(404).send("Listing not found");
+        return;
+      }
+      const token = req.headers.authorization;
+      if (!token) {
+        res.status(403).send("JWT must be provided");
+        return;
+      }
+      const decodedToken = verifyToken(token);
+      if (!decodedToken) {
+        res.status(403).send("Invalid JWT");
+        return;
+      }
+      await deleteListing(id);
+      res.status(200).send("Listing deleted successfully");
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
     }
   });
 

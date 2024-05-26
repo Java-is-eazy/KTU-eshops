@@ -1,3 +1,4 @@
+const { configDotenv } = require("dotenv");
 const { connection } = require("../database/databaseSetup");
 
 const getItems = () => {
@@ -100,6 +101,42 @@ const reportUser = (user_id, username, reason) => {
   });
 };
 
+const getListingByID = (id) => {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      "SELECT * FROM `Products` WHERE id = ?",
+      [id],
+      (error, results) => {
+        try {
+          if (error) {
+            throw error;
+          } else {
+            if (results.length > 0) {
+              resolve(results[0]);
+            } else {
+              resolve(null);
+            }
+          }
+        } catch (error) {
+          reject(error);
+        }
+      }
+    );
+  });
+};
+
+const deleteListing = (id) => {
+  return new Promise((resolve, reject) => {
+    connection.query("DELETE FROM `Products` WHERE id = ?", [id], (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
+
 const createItem = (user_id, title, price, description, image) => {
   return new Promise((resolve, reject) => {
     try {
@@ -199,9 +236,11 @@ module.exports = {
   getUserByUsername,
   deleteUser,
   reportUser,
+  deleteListing,
   createItem,
   createPasswordRecoveryRequest,
   changePassword,
   getUserByEmail,
   changePassword,
+  getListingByID,
 };

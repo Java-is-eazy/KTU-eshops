@@ -7,7 +7,7 @@ import plus from "../assets/PrdAdd.png";
 
 const API_URL = `${window.location.protocol}//${window.location.hostname}:3001/items`;
 
-function ProductPage() {
+function ProductPage( { isAdmin, token } ) {
     const [items, setItems] = useState([]);
     const [filterQuery, setFilterQuery] = useState("");
     const [sortedFilteredData, setSortedFilteredData] = useState([]);
@@ -105,7 +105,7 @@ function ProductPage() {
         ) : (
             <div className='container'>
                 {sortedFilteredData.slice(0, loadedItemsCount).map((item) => (
-                    <ItemCard key={item.id} item={item}/>
+                    <ItemCard key={item.id} item={item} isAdmin={isAdmin} token={token}/>
                 ))}
             </div>
         )}
