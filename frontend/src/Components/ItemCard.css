@@ -159,3 +159,31 @@
   height: 300px;
   width: auto;
 }
+
+.adminContainer {
+  z-index: 2;
+  position: absolute;
+  top:10px;
+  right: 10px;
+}
+
+.adminOptions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+.adminOptionsDots {
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #ffce00;
+  border-radius: 0 0 5px 5px;
+}
+
+.trash-can {
+  width: 60px;
+  z-index: 5;
+}

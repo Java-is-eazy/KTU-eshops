@@ -65,7 +65,10 @@ const App = () => {
                 username={username}
                 isAdmin={isAdmin}
               />
-              <ProductPage />
+              <ProductPage 
+                isAdmin={isAdmin}
+                token={token}
+              />
             </>
           }
         />
