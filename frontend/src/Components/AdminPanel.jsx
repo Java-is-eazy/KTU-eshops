@@ -43,7 +43,7 @@ const AdminPanel = ({ isAdmin }) => {
             {isProductModalOpen && (
                 <div className="modal-window">
                     <div className="modal-content">
-                        <span className="close" onClick={closeModal}>&times;</span>
+                        <span className="close" style={{cursor: "pointer"}} onClick={closeModal}>&times;</span>
                         <h2>Manage Products</h2>
                         <p>Placeholder text for product management.</p>
                     </div>
@@ -53,7 +53,7 @@ const AdminPanel = ({ isAdmin }) => {
             {isUserModalOpen && (
                 <div className="modal-window">
                     <div className="modal-content">
-                        <span style={{ height: "1em" }} className="close" onClick={closeModal}>&times;</span>
+                        <span style={{ height: "1em", cursor: "pointer" }} className="close"  onClick={closeModal}>&times;</span>
                         <h2>Manage Users</h2>
                         <p>Placeholder text for user management.</p>
                     </div>

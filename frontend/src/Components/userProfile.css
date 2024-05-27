@@ -55,21 +55,12 @@
     text-align: center;
 }
 
-.delete-account-button {
+.red-btn {
     background-color: red;
-    padding: 1rem;
-    border-radius: 1rem;
-    font-weight: bolder;
-    margin-top: 1rem;
-    color: white;
 }
 
-.report-account-button {
-    background-color: #ffbb00;
-    padding: 1rem;
-    border-radius: 1rem;
-    font-weight: bolder;
-    margin-top: 1rem;
+.red-btn:hover {
+    background-color: rgb(188, 0, 0);
 }
 
 @media screen and (max-width: 768px) {

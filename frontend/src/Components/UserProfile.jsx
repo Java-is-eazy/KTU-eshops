@@ -103,8 +103,8 @@ export default function UserProfile({ myUsername, token, handleLogout }) {
                         <p>Email</p>
                         <p data-testid="test-email">{user.email}</p>
                         {user.username === myUsername ? (
-                            <button data-testid="test-delete" onClick={handleDeleteAccount} className="delete-account-button">Delete Account</button>
-                        ) : <button data-testid="test-report" onClick={handleReportAccount} className="report-account-button">Report this account</button>}
+                            <button data-testid="test-delete" onClick={handleDeleteAccount} className="submit-btn red-btn">Delete Account</button>
+                        ) : <button data-testid="test-report" onClick={handleReportAccount} className="submit-btn red-btn">Report this account</button>}
                     </div>
                 </div>
             )}

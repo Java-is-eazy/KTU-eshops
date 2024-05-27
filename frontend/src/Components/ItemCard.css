@@ -148,6 +148,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: 0.5s;
+  width: auto;
 }
 
 .card:hover .contentBox .buy {
@@ -183,7 +184,19 @@
   border-radius: 0 0 5px 5px;
 }
 
-.trash-can {
-  width: 60px;
-  z-index: 5;
+@media screen and (max-width: 1000px) {
+  .buy {
+    position: relative;
+    text-align: center;
+    padding: 10px 30px;
+    margin-top: 15px;
+    color: #000000;
+    background: #ffce00;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: auto;
+    opacity: 1;
+    transition: none;
+  }
 }

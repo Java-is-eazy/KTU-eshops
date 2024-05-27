@@ -90,12 +90,14 @@ p {
   border-left: 0;
   border-top-right-radius: 3rem;
   border-bottom-right-radius: 3rem;
+  cursor: pointer;
 }
 
 .login-btn {
   border-right: 0;
   border-top-left-radius: 3rem;
   border-bottom-left-radius: 3rem;
+  cursor: pointer;
 }
 
 .incorrect {

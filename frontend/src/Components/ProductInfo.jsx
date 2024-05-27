@@ -61,13 +61,13 @@ const ProductInfo = ({addToCart}) => {
                       <p className="price">{product.price} €</p>
                   </div>
                   <div className="add-to-cart">
-                      <button className="buy" onClick={handleAddToCart}>Add to cart</button>
+                      <button className="submit-btn buy" onClick={handleAddToCart}>Add to cart</button>
                       <Link
                           to={{
                   pathname: `/checkout/${product.id}`,
                 }}
                       >
-                          <button className="buy">Buy</button>
+                          <button className="submit-btn buy">Buy</button>
                       </Link>
                   </div>
               </div>

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styles from "./Wishlist.module.css";
+import ItemCard from "../ItemCard";
 
 function Wishlist() {
     const [wishlist, setWishlist] = useState([]);
@@ -21,14 +22,11 @@ function Wishlist() {
                 wishlist ? (
                     <>
                         <div className={styles.wishListHeader}>
-                            <button className={styles.submitBtn} onClick={handleWishListClear}>CLEAR WISHLIST</button>
+                            <button className="submit-btn" onClick={handleWishListClear}>CLEAR WISHLIST</button>
                         </div>
                         <div className={styles.wishListContainer}>
                             {wishlist.map(item => (
-                                <div key={item.id} className={styles.wishListWrapper}>
-                                    <div className={styles.overflowHidden}>{item.title}</div>
-                                    <img className={styles.wishListImg} src={item.image} alt=""/>
-                                </div>
+                            <ItemCard key={item.id} item={item} isAdmin={undefined} token={undefined}/>
                         ))}
                         </div>
                     </>

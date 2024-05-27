@@ -191,7 +191,7 @@ return (
       {showModal && (
         <div className="modal-recovery">
           <div className="modal-content">
-            <span style={{color:"white", float:"left"}} onClick={() => setShowModal(false)}>&times;</span>
+            <span style={{color:"white", float:"left", cursor:"pointer"}} onClick={() => setShowModal(false)}>&times;</span>
             <h1 style={{color:"white"}}>ProductForge password recovery</h1>
             <form>
               <p className='modal-label'>Email address of the account</p>
