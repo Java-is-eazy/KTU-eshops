@@ -13,12 +13,12 @@
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    align-items: center;
 }
 .wishListImg{
     width: 100px;
     height: 100px;
     object-fit: cover;
+    cursor: pointer;
 }
 .overflowHidden{
     overflow: hidden;
@@ -37,4 +37,5 @@
     padding: 20px 40px 20px 40px;
     font-size: 20px;
     font-weight: bold;
+    cursor: pointer;
 }
