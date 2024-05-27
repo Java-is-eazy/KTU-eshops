@@ -60,7 +60,25 @@ const getUserByUsername = (username) => {
     );
   });
 };
-
+const deleteUserById = (id) => {
+  return new Promise((resolve, reject) => {
+    try {
+      connection.query(
+        "DELETE FROM Users WHERE id = ?",
+        [id],
+        (error, results) => {
+          if (error) {
+            throw Error(error);
+          } else {
+            resolve(results);
+          }
+        }
+      );
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 const deleteUser = (username) => {
   return new Promise((resolve, reject) => {
     try {
@@ -243,4 +261,5 @@ module.exports = {
   getUserByEmail,
   changePassword,
   getListingByID,
+  deleteUserById
 };

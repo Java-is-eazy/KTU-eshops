@@ -10,6 +10,7 @@ const {
   createPasswordRecoveryRequest,
   getListingByID,
   deleteListing,
+  deleteUserById
 } = require("../database/controller");
 
 const { sendEmail } = require("../mail/mailer");
@@ -125,7 +126,35 @@ const setupExpress = (app) => {
       res.status(500).send(error.message);
     }
   });
+  app.delete("/user/:id", async (req, res) => {
+    // Extract the token from the Authorization header
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1]; // Assuming the format "Bearer token"
 
+    if (!token) {
+        return res.status(401).json({ message: "No token provided" });
+    }
+
+    // Verify the token
+    const decodedToken = verifyToken(token);
+
+    // Check if the token is invalid or expired, or if the user is not an admin
+    if (!decodedToken || decodedToken === "Token Expired" || (decodedToken.role && decodedToken.role !== "admin")) {
+        return res.status(401).json({ message: "Unauthorized: Invalid or expired token, or not an admin" });
+    }
+
+    try {
+        const userId = req.params.id;
+        const deleteResult = await deleteUserById(userId);
+        if (deleteResult.affectedRows > 0) {
+            res.status(200).json({ message: "User deleted successfully" });
+        } else {
+            res.status(404).json({ message: "User not found" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error", error: error.message });
+    }
+});
   app.delete("/listing/:id", async (req, res) => {
     try {
       const id = req.params.id;
