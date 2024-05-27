@@ -148,6 +148,11 @@ const setupExpress = (app) => {
         res.status(403).send("Invalid JWT");
         return;
       }
+      if(decodedToken !== "admin")
+      {
+        res.status(403).send("Not admin");
+        return;
+      }
       await deleteListing(id);
       res.status(200).send("Listing deleted successfully");
     } catch (error) {
